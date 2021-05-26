@@ -31,8 +31,10 @@ class User {
     }
 
     public function readFromDatabase($userName) {
+        if (!self::validateUserName($userName)) {
+            return false;
+        }
         $result = Database::selectFirst("select * from MyUser where U_UserName = '$userName'");
-        var_dump($result);
         if ($result) {
             $this->userName = $result[strtolower('U_UserName')];
             $this->name = $result[strtolower('U_Name')];

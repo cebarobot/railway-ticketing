@@ -1,3 +1,13 @@
+<?php
+    use app\models\Auth;
+    use app\models\User;
+
+    $haveLogin = Auth::check();
+    if ($haveLogin) {
+        $currentUser = Auth::user();
+        $userName = $currentUser->{'userName'};
+    }
+?>
 <!DOCTYPE html>
 <html lang="zh_CN">
 <head>
@@ -24,8 +34,13 @@
                 <img src="/images/logo.svg" style="height: 40px;">
             </a>
             <ul class="nav nav-pills">
-                <li class="nav-item"><a href="#" class="nav-link link-dark">登录</a></li>
-                <li class="nav-item"><a href="#" class="nav-link link-dark">注册</a></li>
+                <?php if ($haveLogin): ?>
+                    <li class="nav-item"><a href="#" class="nav-link link-dark"><?= $userName ?></a></li>
+                    <li class="nav-item"><a href="/logout" class="nav-link link-dark">登出</a></li>
+                <?php else: ?>
+                    <li class="nav-item"><a href="#" class="nav-link link-dark">登录</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link link-dark">注册</a></li>
+                <?php endif ?>
                 <li class="nav-item"><a href="#" class="nav-link link-dark">我的 12307</a></li>
                 <li class="nav-item"><a href="#" class="nav-link link-dark">About</a></li>
             </ul>

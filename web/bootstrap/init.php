@@ -8,4 +8,8 @@ include __DIR__ . '/../app/routes.php';
 use foundation\Database;
 Database::init();
 
-// var_dump(Database::query("select * from region where 1"));
+use foundation\Session;
+Session::init();
+
+use app\models\Auth;
+Auth::init();

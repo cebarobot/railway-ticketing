@@ -8,8 +8,5 @@ function asdf() {
     echo "Hello, world, asdf.";
 }
 
-Route::any('/hello', function() {
-    echo "Hello, world";
-});
-Route::any('/asdf', 'asdf');
 Route::any('/', 'Index@index');
+Route::any('/logout', 'AuthCtrl@logout');
