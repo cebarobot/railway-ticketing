@@ -10,3 +10,7 @@ h1.logo {
 .link-dark:hover{
     color:#0d6efd !important;
 }
+
+.login-card {
+    width: 37%;
+}

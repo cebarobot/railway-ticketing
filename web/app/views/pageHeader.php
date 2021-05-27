@@ -1,12 +1,13 @@
 <?php
     use app\models\Auth;
-    use app\models\User;
 
     $haveLogin = Auth::check();
     if ($haveLogin) {
         $currentUser = Auth::user();
         $userName = $currentUser->{'userName'};
     }
+
+    $pageTitle = $pageTitle . ' - CR 12307';
 ?>
 <!DOCTYPE html>
 <html lang="zh_CN">
@@ -24,6 +25,9 @@
     <!-- App CSS -->
     <link href="/css/app.css" rel="stylesheet">
 
+    <!-- jQuery -->
+    <script src="/js/jquery-3.6.0.min.js"></script>
+
     <title><?= $pageTitle ?></title>
 </head>
 <body>
@@ -38,19 +42,19 @@
                     <li class="nav-item"><a href="#" class="nav-link link-dark"><?= $userName ?></a></li>
                     <li class="nav-item"><a href="/logout" class="nav-link link-dark">登出</a></li>
                 <?php else: ?>
-                    <li class="nav-item"><a href="#" class="nav-link link-dark">登录</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link link-dark">注册</a></li>
+                    <li class="nav-item"><a href="/login" class="nav-link link-dark">登录</a></li>
+                    <li class="nav-item"><a href="/register" class="nav-link link-dark">注册</a></li>
                 <?php endif ?>
                 <li class="nav-item"><a href="#" class="nav-link link-dark">我的 12307</a></li>
                 <li class="nav-item"><a href="#" class="nav-link link-dark">About</a></li>
             </ul>
         </div>
     </header>
-    <nav class="py-0 mb-0" style="background: #3B99FC;">
+    <nav class="py-0 mb-4" style="background: #3B99FC;">
         <div class="container d-flex flex-wrap">
             <ul class="nav me-auto">
                 <li class="nav-item">
-                    <a href="#" class="nav-link nav-link-primary link-light px-5 bg-primary">首页</a>
+                    <a href="/" class="nav-link nav-link-primary link-light px-5 bg-primary">首页</a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link nav-link-primary link-light px-5">购买车票</a>

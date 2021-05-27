@@ -9,6 +9,7 @@ class Support {
     }
     public static function errorPageNotFound() {
         http_response_code(404);
+        self::includeView('error404');
         die();
     }
 }
