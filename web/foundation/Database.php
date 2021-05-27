@@ -21,7 +21,11 @@ class Database {
     }
     
 	public static function selectFirst($querySQL, $opt = PGSQL_ASSOC) {
-		return pg_fetch_array(pg_query(self::$pgConnection, $querySQL), 0, $opt);
+        $res = pg_query(self::$pgConnection, $querySQL);
+        if (pg_num_rows($res) > 0) {
+            return pg_fetch_array($res, 0, $opt);
+        }
+		return false;
     }
 
     public static function updateOne($table, $data, $cond) {
