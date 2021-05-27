@@ -1,6 +1,6 @@
 <?php
     use \foundation\Support;
-    Support::includeView('pageHeader', array('pageTitle' => '首页'));
+    Support::includeView('pageHeader', array('pageTitle' => '登录'));
 
     $isInvalidStr = isset($isInvalid) ? 'is-invalid' : '';
     $userNameValue = isset($loginUserName) ? "value=\"$loginUserName\"" : '';
