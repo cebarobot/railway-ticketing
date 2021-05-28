@@ -3,7 +3,7 @@
     Support::includeView('pageHeader', array('pageTitle' => '注册'));
 ?>
 
-<main class="container">
+<main class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-6">
             <h5 class="card-title mb-4">注册</h5>

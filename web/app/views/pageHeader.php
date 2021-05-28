@@ -50,28 +50,28 @@
             </ul>
         </div>
     </header>
-    <nav class="navbar navbar-expand navbar-cr-blue bg-cr-blue py-0 mb-4">
+    <nav class="navbar navbar-expand navbar-cr-blue bg-cr-blue py-0">
         <div class="container d-flex flex-wrap">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a href="/" class="nav-link px-5 active">首页</a>
+                    <a href="/" class="nav-link px-md-4 px-lg-5 active">首页</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link px-5">购买车票</a>
+                    <a href="#" class="nav-link px-md-4 px-lg-5">购买车票</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link px-5">订单信息</a>
+                    <a href="#" class="nav-link px-md-4 px-lg-5">订单信息</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link px-5">车次查询</a>
+                    <a href="#" class="nav-link px-md-4 px-lg-5">车次查询</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link px-5">旅行指南</a>
+                    <a href="#" class="nav-link px-md-4 px-lg-5">旅行指南</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="#" class="nav-link px-5">管理界面</a>
+                    <a href="#" class="nav-link px-lg-5">管理界面</a>
                 </li>
             </ul>
         </div>

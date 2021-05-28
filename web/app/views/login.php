@@ -6,7 +6,7 @@
     $userNameValue = isset($loginUserName) ? "value=\"$loginUserName\"" : '';
 ?>
 
-<main class="container">
+<main class="container mt-4">
     <div class="">
         <div class="">
             <!-- <img src="https://www.12306.cn/en/images/pic/login-banner1.jpg"> -->

@@ -28,3 +28,36 @@ h1.logo {
 .login-card {
     width: 37%;
 }
+
+.index-slide {
+    height: 10em;
+}
+@media (min-width: 768px) {
+    .index-slide {
+        height: 15em;
+    }
+}
+@media (min-width: 992px) {
+    .index-slide {
+        height: 20em;
+    }
+}
+@media (min-width: 1200px) {
+    .index-slide {
+        height: 25em;
+    }
+}
+
+.carousel-item {
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-item > img {
+    position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+}
