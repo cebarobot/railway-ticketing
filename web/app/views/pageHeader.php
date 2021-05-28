@@ -37,7 +37,7 @@
             <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
                 <img src="/images/logo.svg" style="height: 40px;">
             </a>
-            <ul class="nav nav-pills">
+            <ul class="nav">
                 <?php if ($haveLogin): ?>
                     <li class="nav-item"><a href="#" class="nav-link link-dark"><?= $userName ?></a></li>
                     <li class="nav-item"><a href="/logout" class="nav-link link-dark">登出</a></li>
@@ -50,28 +50,28 @@
             </ul>
         </div>
     </header>
-    <nav class="py-0 mb-4" style="background: #3B99FC;">
+    <nav class="navbar navbar-expand navbar-cr-blue bg-cr-blue py-0 mb-4">
         <div class="container d-flex flex-wrap">
-            <ul class="nav me-auto">
+            <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a href="/" class="nav-link nav-link-primary link-light px-5 bg-primary">首页</a>
+                    <a href="/" class="nav-link px-5 active">首页</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link nav-link-primary link-light px-5">购买车票</a>
+                    <a href="#" class="nav-link px-5">购买车票</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link nav-link-primary link-light px-5">订单信息</a>
+                    <a href="#" class="nav-link px-5">订单信息</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link nav-link-primary link-light px-5">车次查询</a>
+                    <a href="#" class="nav-link px-5">车次查询</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link nav-link-primary link-light px-5">旅行指南</a>
+                    <a href="#" class="nav-link px-5">旅行指南</a>
                 </li>
             </ul>
-            <ul class="nav">
+            <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="#" class="nav-link nav-link-primary link-light px-5">管理界面</a>
+                    <a href="#" class="nav-link px-5">管理界面</a>
                 </li>
             </ul>
         </div>

@@ -3,12 +3,26 @@ h1.logo {
     background-image: url(/images/logo.svg);
 }
 
-.nav-link-primary:hover {
-    background-color: #0d6efd !important;
+.bg-cr-blue {
+	background-color: #3B99FC !important;
 }
 
-.link-dark:hover{
-    color:#0d6efd !important;
+.navbar-cr-blue .navbar-nav .nav-link {
+	color: #FFF;
+}
+
+.navbar-cr-blue .navbar-nav .nav-link.active,
+.navbar-cr-blue .navbar-nav .show > .nav-link {
+    background-color: #3685EC !important;
+}
+
+.navbar-cr-blue .navbar-nav .nav-link:focus,
+.navbar-cr-blue .navbar-nav .nav-link:hover {
+    background-color: #3685EC !important;
+}
+
+.link-dark:focus, .link-dark:hover {
+	color: #0d6efd;
 }
 
 .login-card {
