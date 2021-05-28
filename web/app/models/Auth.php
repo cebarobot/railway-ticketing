@@ -30,10 +30,11 @@ class Auth {
         self::$currentUser = new User;
         if (self::$currentUser->readFromDatabase($userName)) {
             Session::set('userName', $userName);
-        } else {
-            Session::unset('userName');
-            self::$currentUser = null;
+            return true;
         }
+        Session::unset('userName');
+        self::$currentUser = null;
+        return false;
     }
 
     public static function logout() {

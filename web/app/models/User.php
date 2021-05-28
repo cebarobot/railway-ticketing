@@ -23,11 +23,29 @@ class User {
         return is_string($phoneNum) && preg_match('/^[0-9]{11}$/', $phoneNum);
     }
 
+    public static function validateCreditCard($creditCard) {
+        return is_string($creditCard) && preg_match('/^[0-9]{16}$/', $creditCard);
+    }
+
     public function validate() {
         return self::validateUserName($this->userName) &&
             self::validateId($this->id) &&
             self::validatePhoneNum($this->phoneNum) &&
-            !empty($this->name) && !empty($this->creditCard);
+            self::validateCreditCard($this->creditCard) &&
+            !empty($this->name);
+    }
+
+    public function exist() {
+        if (!self::validateUserName($this->userName) || !self::validateId($this->id)) {
+            return false;
+        }
+        $userNameEscape = Database::escape($this->userName);
+        $idEscape = Database::escape($this->id);
+        $result = Database::selectFirst("select * from MyUser where U_UserName = '$userNameEscape' or U_ID = '$idEscape';");
+        if ($result) {
+            return true;
+        }
+        return false;
     }
 
     public function readFromDatabase($userName) {
