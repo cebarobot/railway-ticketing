@@ -8,6 +8,31 @@
     }
 
     $pageTitle = $pageTitle . ' - CR 12307';
+
+    $activeItem = $activeNavItem ?? '首页';
+
+    $navList = array(
+        array(
+            'name' => '首页',
+            'href' => '/',
+        ),
+        array(
+            'name' => '购买车票',
+            'href' => '/leftTickets',
+        ),
+        array(
+            'name' => '车次查询',
+            'href' => '#',
+        ),
+        array(
+            'name' => '订单信息',
+            'href' => '#',
+        ),
+        array(
+            'name' => '旅行指南',
+            'href' => '#',
+        ),
+    );
 ?>
 <!DOCTYPE html>
 <html lang="zh_CN">
@@ -53,21 +78,13 @@
     <nav class="navbar navbar-expand navbar-cr-blue bg-cr-blue py-0">
         <div class="container d-flex flex-wrap">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a href="/" class="nav-link px-md-4 px-lg-5 active">首页</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link px-md-4 px-lg-5">购买车票</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link px-md-4 px-lg-5">订单信息</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link px-md-4 px-lg-5">车次查询</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link px-md-4 px-lg-5">旅行指南</a>
-                </li>
+                <?php foreach ($navList as $navItem) : ?>
+                    <li class="nav-item">
+                        <a href="<?= $navItem['href'] ?>" class="nav-link px-md-4 px-lg-5 <?= ($activeItem == $navItem['name']) ? 'active' : '' ?>">
+                            <?= $navItem['name'] ?>
+                        </a>
+                    </li>
+                <?php endforeach ?>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
