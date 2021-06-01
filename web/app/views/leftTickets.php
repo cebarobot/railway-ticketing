@@ -1,9 +1,20 @@
 <?php
     use \foundation\Support;
     Support::includeView('pageHeader', array(
-        'pageTitle' => '首页',
+        'pageTitle' => '购买车票',
         'activeNavItem' => '购买车票',
     ));
+
+    $curDate = $curDate ?? (new DateTime())->format('Y-m-d');
+    $dateList = array();
+    for ($var_i = 0; $var_i < 7; $var_i ++) {
+        $date = new DateTime();
+        $date->add(new DateInterval("P{$var_i}D"));
+        $dateList []= array(
+            'date' => $date->format('Y-m-d'),
+            'week' => Support::getWeekStr($date->format('w')),
+        );
+    }
 ?>
 
 <main class="container mt-4">
@@ -45,77 +56,57 @@
         </div>
     </div>
     <div class="row mt-3">
-        <div class="col-md-2">
-            <div class="card">
-                <div class="card-body">
-                    <h5>筛选</h5>   
+        <div class="col-md-2 f-sm">
+            <h5>筛选（未实装）</h5>
+            <div class="border-bottom mb-2">
+                <h6>车次类型</h6>
+                <div class="nav nav-pills flex-column">
+                    <a class="nav-link active" href="#">高速动车组（G）</a>
+                    <a class="nav-link" href="#">城际动车组（C）</a>
+                    <a class="nav-link" href="#">普通动车组（D）</a>
+                    <a class="nav-link" href="#">直达特快列车（Z）</a>
+                    <a class="nav-link" href="#">特快列车（T）</a>
+                    <a class="nav-link" href="#">快速列车（K）</a>
+                    <a class="nav-link" href="#">普通列车</a>
+                    <a class="nav-link" href="#">旅游列车（Y）</a>
+                    <a class="nav-link" href="#">市郊列车（S）</a>
                 </div>
-                <ul class="list-group list-group-flush f-sm">
-                    <li class="list-group-item">
-                        <h6>车次类型</h6>
-                        <ul>
-                            <li>高速动车组列车（G）</li>
-                            <li>城际动车组列车（C）</li>
-                            <li>普通动车组列车（D）</li>
-                            <li>直达特快列车（Z）</li>
-                            <li>特快列车（T）</li>
-                            <li>快速列车（K）</li>
-                            <li>普通列车</li>
-                            <li>旅游列车（Y）</li>
-                            <li>市郊列车（S）</li>
-                        </ul>
-                    </li>
-                    <li class="list-group-item">
-                        <h6>出发车站</h6>
-                        <ul>
-                            <li>北京</li>
-                            <li>北京西</li>
-                            <li>北京北</li>
-                            <li>北京南</li>
-                            <li>北京东</li>
-                        </ul>
-                    </li>
-                    <li class="list-group-item">
-                        <h6>到达车站</h6>
-                        <ul>
-                            <li>北京</li>
-                            <li>北京西</li>
-                            <li>北京北</li>
-                            <li>北京南</li>
-                            <li>北京东</li>
-                        </ul>
-                    </li>
-                </ul>
+            </div>
+            <div class="border-bottom mb-2">
+                <h6>出发车站</h6>
+                <div class="nav nav-pills flex-column">
+                    <a class="nav-link" href="#">北京</a>
+                    <a class="nav-link" href="#">北京西</a>
+                    <a class="nav-link" href="#">北京北</a>
+                    <a class="nav-link active" href="#">北京南</a>
+                    <a class="nav-link" href="#">北京东</a>
+                </div>
+            </div>
+            <div class="border-bottom mb-2">
+                <h6>到达车站</h6>
+                <div class="nav nav-pills flex-column">
+                    <a class="nav-link" href="#">上海</a>
+                    <a class="nav-link" href="#">上海南</a>
+                    <a class="nav-link active" href="#">上海虹桥</a>
+                    <a class="nav-link" href="#">北京西</a>
+                </div>
             </div>
         </div>
         <div class="col-md-10">
             <ul class="nav nav-tabs text-center f-sm">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">2021-05-31<br>周一</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">2021-06-01<br>周二</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">2021-06-02<br>周三</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">2021-06-03<br>周四</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">2021-06-04<br>周五</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">2021-06-05<br>周六</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">2021-06-06<br>周日</a>
-                </li>
+                <?php foreach ($dateList as $oneDate): ?>
+                    <li class="nav-item">
+                        <a class="nav-link <?= $oneDate['date'] == $curDate? 'active' : '' ?>" href="#">
+                            <?= $oneDate['date'] ?><br>
+                            <?= $oneDate['week'] ?>
+                        </a>
+                    </li>
+                <?php endforeach ?>
             </ul>
             <div class="ticket-list-box p-4">
                 <div class="row row-cols-auto mb-4">
-                    <div class="fw-bold">北京 <i class="bi bi-arrow-right"></i> 上海</div>
-                    <div class="ms-3"><small class="text-secondary">(找到 3 条结果)</small></div>
+                    <div class="fw-bold"><?= $fromCity ?> <i class="bi bi-arrow-right"></i> <?= $toCity ?></div>
+                    <div class="ms-3"><small class="text-secondary">(找到 <?= count($ticketList) ?> 条结果)</small></div>
                 </div>
                 <div class="mt-4">
                     <div class="row ticket-res-header py-2">
@@ -126,59 +117,37 @@
                         <div class="ticket-price">票价</div>
                         <div class="ticket-btn"></div>
                     </div>
-                    <div class="row ticket-res-item py-4">
-                        <div class="ticket-no">G1</div>
-                        <div class="ticket-dep">
-                            <div class="ticket-time">09:00</div>
-                            <div class="ticket-sta">北京南</div>
-                        </div>
-                        <div class="ticket-du">4 小时 28 分钟</div>
-                        <div class="ticket-arr">
-                            <div class="ticket-time">14:49</div>
-                            <div class="ticket-sta">上海虹桥</div>
-                        </div>
-                        <div class="ticket-buy">
-                            <div class="ticket-buy-item row my-1">
-                                <div class="ticket-buy-type">
-                                    商务座
-                                </div>
-                                <div class="ticket-buy-price">
-                                    ￥1873
-                                </div>
-                                <div class="ticket-buy-btn">
-                                    <button class="btn btn-warning btn-sm">
-                                        购买
-                                    </button>
-                                </div>
+                    <?php foreach ($ticketList as $ticketItem): ?>
+                        <div class="row ticket-res-item py-4">
+                            <div class="ticket-no"><?= $ticketItem['trainNum'] ?></div>
+                            <div class="ticket-dep">
+                                <div class="ticket-time"><?= $ticketItem['depTime'] ?></div>
+                                <div class="ticket-sta"><?= $ticketItem['depSta'] ?></div>
                             </div>
-                            <div class="ticket-buy-item row my-1">
-                                <div class="ticket-buy-type">
-                                    一等座
-                                </div>
-                                <div class="ticket-buy-price">
-                                    ￥1006
-                                </div>
-                                <div class="ticket-buy-btn">
-                                    <button class="btn btn-warning btn-sm">
-                                        购买
-                                    </button>
-                                </div>
+                            <div class="ticket-du"><?= $ticketItem['duration'] ?></div>
+                            <div class="ticket-arr">
+                                <div class="ticket-time"><?= $ticketItem['arrTime'] ?></div>
+                                <div class="ticket-sta"><?= $ticketItem['arrSta'] ?></div>
                             </div>
-                            <div class="ticket-buy-item row my-1">
-                                <div class="ticket-buy-type">
-                                    二等座
-                                </div>
-                                <div class="ticket-buy-price">
-                                    ￥598
-                                </div>
-                                <div class="ticket-buy-btn">
-                                    <button class="btn btn-warning btn-sm">
-                                        购买
-                                    </button>
-                                </div>
+                            <div class="ticket-buy">
+                                <?php foreach ($ticketItem['seatList'] as $seatItem): ?>
+                                    <div class="ticket-buy-item row my-1">
+                                        <div class="ticket-buy-type">
+                                            <?= $seatItem['seatType'] ?>
+                                        </div>
+                                        <div class="ticket-buy-price">
+                                            ￥<?= $seatItem['price'] ?>
+                                        </div>
+                                        <div class="ticket-buy-btn">
+                                            <button class="btn btn-warning btn-sm">
+                                                购买
+                                            </button>
+                                        </div>
+                                    </div>
+                                <?php endforeach ?>
                             </div>
                         </div>
-                    </div>
+                    <?php endforeach ?>
                 </div>
             </div>
         </div>

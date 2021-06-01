@@ -13,7 +13,56 @@ class StaticPage {
     }
 
     public static function leftTickets() {
-        Support::includeView("leftTickets");
+        Support::includeView("leftTickets", array(
+            'fromCity' => '北京',
+            'toCity' => '上海',
+            'ticketList' => array(
+                array(
+                    'trainNum' => 'G1',
+                    'depSta' => '北京南',
+                    'arrSta' => '上海虹桥',
+                    'depTime' => '09:00',
+                    'arrTime' => '14:49',
+                    'duration' => '4:28',
+                    'seatList' => array(
+                        array(
+                            'seatType' => '商务座',
+                            'price' => '1873',
+                        ),
+                        array(
+                            'seatType' => '一等座',
+                            'price' => '1000',
+                        ),
+                        array(
+                            'seatType' => '二等座',
+                            'price' => '600',
+                        )
+                    )
+                ),
+                array(
+                    'trainNum' => 'G1',
+                    'depSta' => '北京南',
+                    'arrSta' => '上海虹桥',
+                    'depTime' => '09:00',
+                    'arrTime' => '14:49',
+                    'duration' => '4:28',
+                    'seatList' => array(
+                        array(
+                            'seatType' => '商务座',
+                            'price' => '1873',
+                        ),
+                        array(
+                            'seatType' => '一等座',
+                            'price' => '1000',
+                        ),
+                        array(
+                            'seatType' => '二等座',
+                            'price' => '600',
+                        )
+                    )
+                ),
+            )
+        ));
         die();
     }
 
