@@ -85,9 +85,9 @@ class StaticPage {
                             'status' => '已完成'
                         ),
                         array(
-                            'trainNum' => 'S512',
-                            'depSta' => '北京北',
-                            'arrSta' => '怀柔北',
+                            'trainNum' => 'S612',
+                            'depSta' => '北京西',
+                            'arrSta' => '通州西',
                             'date' => '2021-06-01',
                             'depTime' => '16:23',
                             'passengerName' => '徐泽凡',
@@ -99,6 +99,11 @@ class StaticPage {
                 )
             )
         ));
+        die();
+    }
+
+    public static function orderCheck() {
+        Support::includeView('orderCheck');
         die();
     }
 };

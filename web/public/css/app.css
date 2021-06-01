@@ -204,3 +204,7 @@ h1.logo {
 	padding-bottom: .75rem;
     border-bottom: 1px solid #dee2e6;
 }
+
+.form-control:disabled, .form-control[readonly] {
+	background-color: #fff;
+}
