@@ -75,7 +75,8 @@ h1.logo {
 	font-size: .875rem !important;
 }
 
-.ticket-list-box {
+.ticket-list-box,
+.order-list-box {
     border-width: 0px 1px 1px 1px;
     border-style: solid;
     border-color: #dee2e6;
@@ -83,7 +84,8 @@ h1.logo {
     border-bottom-left-radius: .25rem;
 }
 
-.ticket-res-header {
+.ticket-res-header,
+.order-list-header {
     text-align: center;
     background-color: #f8f9fa;
     font-size: .875rem;
@@ -92,18 +94,12 @@ h1.logo {
 .ticket-res-item {
     text-align: center;
     align-items: center;
+    border-bottom: 1px solid #dee2e6;
 }
 
-.ticket-no,
-.ticket-dep,
-.ticket-du,
-.ticket-arr,
-.ticket-price,
-.ticket-btn,
-.ticket-buy,
-.ticket-buy-type,
-.ticket-buy-price,
-.ticket-buy-btn {
+.ticket-no, .ticket-dep, .ticket-du, .ticket-arr, .ticket-price, .ticket-btn, 
+.ticket-buy, .ticket-buy-type, .ticket-buy-price, .ticket-buy-btn,
+.order-train, .order-passenger, .order-seat, .order-price, .order-status {
     flex: 0 0 auto;
 }
 
@@ -153,4 +149,58 @@ h1.logo {
 
 .ticket-time {
     color: #0d6efd;
+}
+
+.order-train {
+    width: 25%;
+}
+.order-passenger {
+    width: 20%;
+}
+
+.order-seat {
+    width: 20%;
+}
+
+.order-price {
+    width: 20%;
+}
+
+.order-status {
+    width: 15%;
+}
+
+.order-item-header {
+    /* font-size: .875rem; */
+	padding-top: .75rem;
+	padding-bottom: .75rem;
+	padding-left: 1rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.order-item-header > * {
+    flex: 0 0 auto;
+    width: auto;
+}
+
+.order-item-body {
+	padding-top: 1.5rem;
+	padding-bottom: 1.5rem;
+    border-bottom: 1px solid #dee2e6;
+    text-align: center;
+    align-items: center;
+}
+
+.order-item-body .order-train {
+    text-align: left;
+}
+
+.order-item-body .order-train {
+	padding-left: 2rem;
+}
+
+.order-item-footer {
+	padding-top: .75rem;
+	padding-bottom: .75rem;
+    border-bottom: 1px solid #dee2e6;
 }

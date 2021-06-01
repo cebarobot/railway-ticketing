@@ -26,7 +26,7 @@
         ),
         array(
             'name' => '订单信息',
-            'href' => '#',
+            'href' => '/orderList',
         ),
         array(
             'name' => '旅行指南',

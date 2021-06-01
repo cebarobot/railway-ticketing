@@ -10,6 +10,7 @@ function asdf() {
 
 Route::any('/', 'StaticPage@index');
 Route::any('/leftTickets', 'StaticPage@leftTickets');
+Route::any('/orderList', 'StaticPage@orderList');
 
 Route::any('/logout', 'AuthCtrl@logout');
 
