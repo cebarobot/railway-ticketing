@@ -61,3 +61,96 @@ h1.logo {
     right: -9999px;
     margin: auto;
 }
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+	color: #0d6efd;
+}
+
+.nav-tabs .nav-link {
+	color: #495057;
+}
+
+.f-sm {
+	font-size: .875rem !important;
+}
+
+.ticket-list-box {
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    border-color: #dee2e6;
+    border-bottom-right-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+}
+
+.ticket-res-header {
+    text-align: center;
+    background-color: #f8f9fa;
+    font-size: .875rem;
+}
+
+.ticket-res-item {
+    text-align: center;
+    align-items: center;
+}
+
+.ticket-no,
+.ticket-dep,
+.ticket-du,
+.ticket-arr,
+.ticket-price,
+.ticket-btn,
+.ticket-buy,
+.ticket-buy-type,
+.ticket-buy-price,
+.ticket-buy-btn {
+    flex: 0 0 auto;
+}
+
+.ticket-no {
+    width: 12%;
+}
+.ticket-res-item .ticket-no {
+    color: #0d6efd;
+    font-size: 1.25rem;
+}
+
+.ticket-dep {
+    width: 20%;
+}
+
+.ticket-du {
+    width: 15%;
+}
+
+.ticket-arr {
+    width: 20%;
+}
+
+.ticket-price {
+    width: 23.1%;
+}
+
+.ticket-btn {
+    width: 6.9%;
+}
+
+.ticket-buy {
+    width: 33%;
+}
+
+.ticket-buy-type {
+    width: 35%;
+    text-align: right;
+}
+.ticket-buy-price {
+    width: 35%;
+    text-align: left;
+}
+.ticket-buy-btn {
+    width: 30%;
+}
+
+.ticket-time {
+    color: #0d6efd;
+}
