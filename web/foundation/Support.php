@@ -12,4 +12,12 @@ class Support {
         self::includeView('error404');
         die();
     }
+	public static function getRequestPath($uri) {
+		$p = strpos($uri, '?');
+		if ($p === false) {
+			return $uri;
+		} else {
+			return substr($uri, 0, $p);
+		}
+	}
 }

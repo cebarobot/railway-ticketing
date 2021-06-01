@@ -90,7 +90,7 @@ class Route {
         $matches = array();
         
         $uri_pat = strtr($route['uri'], $rep_arr);
-        if (!preg_match('/^'.$uri_pat.'$/', rtrim($request['uri'], '/'), $uri_matches)) {
+        if (!preg_match('/^'.$uri_pat.'$/', rtrim($request['path'], '/'), $uri_matches)) {
             return false;
         }
         $matches = array_merge($matches, $uri_matches);
