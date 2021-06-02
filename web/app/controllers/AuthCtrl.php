@@ -7,13 +7,13 @@ use foundation\Database;
 use foundation\Support;
 
 class AuthCtrl {
-    static public function logout() {
+    public static function logout() {
         Auth::logout();
         header("Location: /login");
         die();
     }
 
-    static public function login() {
+    public static function login() {
         $loginUserName = $_POST['username'] ?? '';
         if (Auth::login($loginUserName)) {
             header("Location: /");
@@ -23,7 +23,7 @@ class AuthCtrl {
         die();
     }
 
-    static public function loginPage() {
+    public static function loginPage() {
         if (Auth::check()) {
             header("Location: /");
         } else {
