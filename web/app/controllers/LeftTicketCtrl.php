@@ -23,7 +23,7 @@ class leftTicketCtrl {
                     'singleTickets' => array(
                         new LeftSingleTicket(array(
                             'trainNum' => 'G1',
-                            'date' => '2021-06-02',
+                            'date' => '2021-06-04',
                             'depSta' => '北京南',
                             'arrSta' => '上海虹桥',
                             'depTime' => '09:00',
@@ -62,7 +62,7 @@ class leftTicketCtrl {
                     'singleTickets' => array(
                         new LeftSingleTicket(array(
                             'trainNum' => 'G1',
-                            'date' => '2021-06-02',
+                            'date' => '2021-06-04',
                             'depSta' => '北京南',
                             'arrSta' => '上海虹桥',
                             'depTime' => '09:00',
@@ -81,7 +81,7 @@ class leftTicketCtrl {
                         )),
                         new LeftSingleTicket(array(
                             'trainNum' => 'G1',
-                            'date' => '2021-06-02',
+                            'date' => '2021-06-04',
                             'depSta' => '北京南',
                             'arrSta' => '上海虹桥',
                             'depTime' => '09:00',
@@ -119,7 +119,7 @@ class leftTicketCtrl {
                     'singleTickets' => array(
                         new LeftSingleTicket(array(
                             'trainNum' => 'G1',
-                            'date' => '2021-06-02',
+                            'date' => '2021-06-04',
                             'depSta' => '北京南',
                             'arrSta' => '上海虹桥',
                             'depTime' => '09:00',

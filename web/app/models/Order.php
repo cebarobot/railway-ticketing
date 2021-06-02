@@ -37,7 +37,8 @@ from (
     OrderInfo 
     left outer join TicketInfo as Ticket1 on OrderInfo.ticketID1 = Ticket1.id
     left outer join TicketInfo as Ticket2 on OrderInfo.ticketID2 = Ticket2.id
-) where {$cond};
+) where {$cond}
+order by OrderInfo.id desc;
 SQL;
         return Database::selectAll($sql);
     }
