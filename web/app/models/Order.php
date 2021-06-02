@@ -12,6 +12,45 @@ class Order extends \foundation\BaseModel {
     public $status;
     public $ticketList;
 
+    private static function query($cond) {
+        $sql = <<<SQLEOF
+select
+    OrderInfo.id as orderID,
+    OrderInfo.orderTime as orderTime,
+    OrderInfo.userName as userName,
+    OrderInfo.orderStatus as orderStatus,
+    Ticket1.trainNum as trainNum1,
+    Ticket1.trainDate as trainDate1,
+    Ticket1.seatType as seatType1,
+    Ticket1.price as price1,
+    (select t_station as depSta1 from train where t_number = Ticket1.trainNum and t_stopNum = Ticket1.departureNum),
+    (select t_station as arrSta1 from train where t_number = Ticket1.trainNum and t_stopNum = Ticket1.arrivalNum),
+    (select t_departuretime as depTime1 from train where t_number = Ticket1.trainNum and t_stopNum = Ticket1.departureNum),
+    Ticket2.trainNum as trainNum2,
+    Ticket2.trainDate as trainDate2,
+    Ticket2.seatType as seatType2,
+    Ticket2.price as price2,
+    (select t_station as depSta2 from train where t_number = Ticket2.trainNum and t_stopNum = Ticket2.departureNum),
+    (select t_station as arrSta2 from train where t_number = Ticket2.trainNum and t_stopNum = Ticket2.arrivalNum),
+    (select t_departuretime as depTime2 from train where t_number = Ticket2.trainNum and t_stopNum = Ticket2.departureNum)
+from (
+    OrderInfo 
+    left outer join TicketInfo as Ticket1 on OrderInfo.ticketID1 = Ticket1.id
+    left outer join TicketInfo as Ticket2 on OrderInfo.ticketID2 = Ticket2.id
+) where {$cond};
+SQLEOF;
+        return Database::selectAll($sql);
+    }
+
+    public static function queryOfUser($user) {
+        $userName = $user->userName;
+        return self::query("OrderInfo.userName = '{$userName}'");
+    }
+
+    public static function queryAll() {
+        return self::query("true");
+    }
+
     public function initFromOrderRow($row) {
         $this->orderID = $row[strtolower('orderID')];
         $this->orderTime = (new DateTime($row[strtolower('orderTime')]))->format('Y-m-d H:i');
@@ -39,6 +78,11 @@ class Order extends \foundation\BaseModel {
                 'price' => $row[strtolower('price2')],
             ));
         }
+    }
+
+    public function initByID($id) {
+        $rows = self::query("OrderInfo.id = {$id}");
+        $this->initFromOrderRow($rows[0]);
     }
 
     public function insert() {
@@ -71,7 +115,7 @@ SQLEOF;
     public function submit() {
         $this->status = 'reserved';
         foreach ($this->ticketList as $oneTicket) {
-            $oneTicket->updateSeatInfo();
+            $oneTicket->requireSeatInfo();
             $oneTicket->insert();
         }
         $this->insert();

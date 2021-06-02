@@ -50,7 +50,11 @@ SQLEOF;
         $this->ticketID = intval(Database::fetchRow($res)[0]);
     }
 
-    public function updateSeatInfo() {
+    public function requireSeatInfo() {
+        
+    }
+
+    public function releaseSeatInfo() {
         
     }
 }
