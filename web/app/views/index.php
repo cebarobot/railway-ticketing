@@ -24,25 +24,25 @@
                 <div class="card-body">
                     <div class="mb-2">
                         <h5>单程</h5>
-                        <form>
+                        <form action="/leftTickets/City" method="GET">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="出发地">
+                                <input type="text" class="form-control" name="fromCity" placeholder="出发地">
                                 <button class="btn btn-warning"><i class="bi bi-arrow-left-right"></i></button>
                                 <!-- <span class="input-group-text">@</span> -->
-                                <input type="text" class="form-control" placeholder="到达地">
-                                <input type="date" class="form-control" placeholder="出发日期" min="2021-05-31">
+                                <input type="text" class="form-control" name="toCity" placeholder="到达地">
+                                <input type="date" class="form-control" name="date" placeholder="出发日期" min="2021-05-31">
                                 <button class="btn btn-warning">查询</button>
                             </div>
                         </form>
                     </div>
                     <div class="mb-2">
                     <h5>车次</h5>
-                        <form>
+                        <form action="/leftTickets/Train" method="GET">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="出发地">
+                                <input type="text" class="form-control" name="trainNum" placeholder="车次">
                                 <span class="input-group-text" id="basic-addon1"><i class="bi bi-pin-angle"></i></span>
-                                <input type="text" class="form-control" placeholder="车次">
-                                <input type="date" class="form-control" placeholder="出发日期" min="2021-05-31">
+                                <input type="text" class="form-control" name="depSta" placeholder="出发站">
+                                <input type="date" class="form-control" name="date" placeholder="出发日期" min="2021-05-31">
                                 <button class="btn btn-warning">查询</button>
                             </div>
                         </form>
