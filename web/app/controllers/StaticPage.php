@@ -51,9 +51,4 @@ class StaticPage {
         ));
         die();
     }
-
-    public static function orderCheck() {
-        Support::includeView('orderCheck');
-        die();
-    }
 };

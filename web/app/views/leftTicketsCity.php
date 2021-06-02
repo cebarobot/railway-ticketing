@@ -130,14 +130,14 @@
                     <?php foreach ($ticketList as $ticketItem): ?>
                         <div class="row ticket-res-item py-4">
                             <div class="ticket-info">
-                                <?php foreach ($ticketItem['singleTicketList'] as $singleTicketItem): ?>
+                                <?php foreach ($ticketItem->singleTickets as $singleTicketItem): ?>
                                     <div class="row ticket-info-item my-3">
                                         <div class="ticket-info-no"><?= $singleTicketItem['trainNum'] ?></div>
                                         <div class="ticket-info-dep">
                                             <div class="ticket-time"><?= $singleTicketItem['depTime'] ?></div>
                                             <div class="ticket-sta"><?= $singleTicketItem['depSta'] ?></div>
                                         </div>
-                                        <div class="ticket-info-du"><?= $singleTicketItem['duration'] ?></div>
+                                        <div class="ticket-info-du"><?= $singleTicketItem['travelTime'] ?></div>
                                         <div class="ticket-info-arr">
                                             <div class="ticket-time"><?= $singleTicketItem['arrTime'] ?></div>
                                             <div class="ticket-sta"><?= $singleTicketItem['arrSta'] ?></div>
@@ -146,7 +146,7 @@
                                 <?php endforeach ?>
                             </div>
                             <div class="ticket-buy">
-                                <?php foreach ($ticketItem['seatList'] as $seatItem): ?>
+                                <?php foreach ($ticketItem->seats as $seatItem): ?>
                                     <div class="ticket-buy-item row my-1">
                                         <div class="ticket-buy-type">
                                             <?= $seatItem['seatType'] ?>
@@ -155,9 +155,14 @@
                                             ￥<?= $seatItem['price'] ?>
                                         </div>
                                         <div class="ticket-buy-btn">
-                                            <button class="btn btn-warning btn-sm">
-                                                购买
-                                            </button>
+                                            <form action="/orderCheck" method="POST">
+                                                <input type="hidden" name="trainInfo" value="<?= $ticketItem->getTrainInfoJson() ?>">
+                                                <input type="hidden" name="seatType-0" value="<?= $seatItem['seatType'] ?>">
+                                                <input type="hidden" name="price-0" value="<?= $seatItem['price'] ?>">
+                                                <button class="btn btn-warning btn-sm">
+                                                    购买
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 <?php endforeach ?>

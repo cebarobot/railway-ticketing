@@ -8,45 +8,55 @@
 
 <main class="container mt-4">
     <div class="row justify-content-center">
-        <div class="col-8">
+        <div class="col-10">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title mb-4">确认订单</h5>
                     <form class="" action="/orderSumbit" method="POST">
+                        <input type="hidden" name="ticketCnt" value="<?= count($trainInfo) ?>">
                         <div class="row g-3">
-                            <div class="col-3">
-                                <label for="trainNum" class="form-label">车次</label>
-                                <input type="text" class="form-control" id="trainNum" name="trainNum" value="<?= $trainNum ?>" readonly>
-                            </div>
-                            <div class="col-3">
-                                <label for="depSta" class="form-label">出发站</label>
-                                <input type="text" class="form-control" id="depSta" name="depSta" value="<?= $depSta ?>" readonly>
-                            </div>
-                            <div class="col-3">
-                                <label for="arrSta" class="form-label">终到站</label>
-                                <input type="text" class="form-control" id="arrSta" name="arrSta" value="<?= $arrSta ?>" readonly>
-                            </div>
-                            <div class="col-3">
-                                <label for="depDate" class="form-label">出发日期</label>
-                                <input type="text" class="form-control" id="depDate" name="depDate" value="<?= $depDate ?>" readonly>
+                            <?php foreach ($trainInfo as $key => $oneTrainInfo): ?>
+                            <div class="col-2">
+                                <label for="trainNum-<?= $key ?>" class="form-label">车次</label>
+                                <input type="text" class="form-control" id="trainNum-<?= $key ?>" name="trainNum-<?= $key ?>" value="<?= $oneTrainInfo['trainNum'] ?>" readonly>
                             </div>
                             <div class="col-2">
+                                <label for="date-<?= $key ?>" class="form-label">出发日期</label>
+                                <input type="text" class="form-control" id="date-<?= $key ?>" name="date-<?= $key ?>" value="<?= $oneTrainInfo['date'] ?>" readonly>
+                            </div>
+                            <div class="col-2">
+                                <label for="depSta-<?= $key ?>" class="form-label">出发站</label>
+                                <input type="text" class="form-control" id="depSta-<?= $key ?>" name="depSta-<?= $key ?>" value="<?= $oneTrainInfo['depSta'] ?>" readonly>
+                            </div>
+                            <div class="col-2">
+                                <label for="arrSta-<?= $key ?>" class="form-label">终到站</label>
+                                <input type="text" class="form-control" id="arrSta-<?= $key ?>" name="arrSta-<?= $key ?>" value="<?= $oneTrainInfo['arrSta'] ?>" readonly>
+                            </div>
+                            <div class="col-2">
+                                <label for="seatType-<?= $key ?>" class="form-label">坐席</label>
+                                <input type="text" class="form-control" id="seatType-<?= $key ?>" name="seatType-<?= $key ?>" value="<?= $oneTrainInfo['seatType'] ?>" readonly>
+                            </div>
+                            <div class="col-2">
+                                <label for="price-<?= $key ?>" class="form-label">票价</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="rmb-symbol">￥</span>
+                                    <input type="text" class="form-control" id="price-<?= $key ?>" name="price-<?= $key ?>" value="<?= $oneTrainInfo['price'] ?>" readonly>
+                                </div>
+                            </div>
+                            <?php endforeach ?>
+                            <div class="col-3">
                                 <label for="passengerName" class="form-label">乘车人</label>
                                 <input type="text" class="form-control" id="passengerName" name="passengerName" value="<?= $passengerName ?>" readonly>
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
                                 <label for="passengerID" class="form-label">证件号码</label>
                                 <input type="text" class="form-control" id="passengerID" name="passengerID" value="<?= $passengerID ?>" readonly>
                             </div>
                             <div class="col-3">
-                                <label for="seatType" class="form-label">坐席</label>
-                                <input type="text" class="form-control" id="seatType" name="seatType" value="<?= $seatType ?>" readonly>
-                            </div>
-                            <div class="col-3">
-                                <label for="price" class="form-label">票价</label>
+                                <label for="totalPrice" class="form-label">总价</label>
                                 <div class="input-group">
                                     <span class="input-group-text" id="rmb-symbol">￥</span>
-                                    <input type="text" class="form-control" id="price" name="price" value="<?= $price ?>" readonly>
+                                    <input type="text" class="form-control" id="totalPrice" name="totalPrice" value="<?= $totalPrice ?>" readonly>
                                 </div>
                             </div>
                             <div class="col-12 text-center">

@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use DateTime;
 use foundation\Support;
+use app\models\LeftTicket;
 
 class leftTicketCtrl {
     public static function betweenCity() {
@@ -17,14 +18,19 @@ class leftTicketCtrl {
             'toCity' => $toCity,
             'curDate' => $date,
             'ticketList' => array(
-                array(
-                    'trainNum' => 'G1',
-                    'depSta' => '北京南',
-                    'arrSta' => '上海虹桥',
-                    'depTime' => '09:00',
-                    'arrTime' => '14:49',
-                    'duration' => '4:28',
-                    'seatList' => array(
+                new LeftTicket(array(
+                    'singleTickets' => array(
+                        array(
+                            'trainNum' => 'G1',
+                            'date' => '2021-06-02',
+                            'depSta' => '北京南',
+                            'arrSta' => '上海虹桥',
+                            'depTime' => '09:00',
+                            'arrTime' => '14:49',
+                            'travelTime' => '4:28',
+                        )
+                    ),
+                    'seats' => array(
                         array(
                             'seatType' => '商务座',
                             'price' => '1873',
@@ -38,29 +44,7 @@ class leftTicketCtrl {
                             'price' => '600',
                         )
                     )
-                ),
-                array(
-                    'trainNum' => 'G1',
-                    'depSta' => '北京南',
-                    'arrSta' => '上海虹桥',
-                    'depTime' => '09:00',
-                    'arrTime' => '14:49',
-                    'duration' => '4:28',
-                    'seatList' => array(
-                        array(
-                            'seatType' => '商务座',
-                            'price' => '1873',
-                        ),
-                        array(
-                            'seatType' => '一等座',
-                            'price' => '1000',
-                        ),
-                        array(
-                            'seatType' => '二等座',
-                            'price' => '600',
-                        )
-                    )
-                ),
+                )),
             )
         ));
         die();
@@ -77,14 +61,27 @@ class leftTicketCtrl {
             'toCity' => $toCity,
             'curDate' => $date,
             'ticketList' => array(
-                array(
-                    'trainNum' => 'G1',
-                    'depSta' => '北京南',
-                    'arrSta' => '上海虹桥',
-                    'depTime' => '09:00',
-                    'arrTime' => '14:49',
-                    'duration' => '4:28',
-                    'seatList' => array(
+                new LeftTicket(array(
+                    'singleTickets' => array(
+                        array(
+                            'trainNum' => 'G1',
+                            'date' => '2021-06-02',
+                            'depSta' => '北京南',
+                            'arrSta' => '上海虹桥',
+                            'depTime' => '09:00',
+                            'arrTime' => '14:49',
+                            'travelTime' => '4:28',
+                        ),
+                        array(
+                            'trainNum' => 'G1',
+                            'depSta' => '北京南',
+                            'arrSta' => '上海虹桥',
+                            'depTime' => '09:00',
+                            'arrTime' => '14:49',
+                            'travelTime' => '4:28',
+                        )
+                    ),
+                    'seats' => array(
                         array(
                             'seatType' => '商务座',
                             'price' => '1873',
@@ -98,29 +95,7 @@ class leftTicketCtrl {
                             'price' => '600',
                         )
                     )
-                ),
-                array(
-                    'trainNum' => 'G1',
-                    'depSta' => '北京南',
-                    'arrSta' => '上海虹桥',
-                    'depTime' => '09:00',
-                    'arrTime' => '14:49',
-                    'duration' => '4:28',
-                    'seatList' => array(
-                        array(
-                            'seatType' => '商务座',
-                            'price' => '1873',
-                        ),
-                        array(
-                            'seatType' => '一等座',
-                            'price' => '1000',
-                        ),
-                        array(
-                            'seatType' => '二等座',
-                            'price' => '600',
-                        )
-                    )
-                ),
+                )),
             )
         ));
         die();
@@ -136,14 +111,19 @@ class leftTicketCtrl {
             'depSta' => $depSta,
             'curDate' => $date,
             'ticketList' => array(
-                array(
-                    'trainNum' => 'G1',
-                    'depSta' => '北京南',
-                    'arrSta' => '上海虹桥',
-                    'depTime' => '09:00',
-                    'arrTime' => '14:49',
-                    'duration' => '4:28',
-                    'seatList' => array(
+                new LeftTicket(array(
+                    'singleTickets' => array(
+                        array(
+                            'trainNum' => 'G1',
+                            'date' => '2021-06-02',
+                            'depSta' => '北京南',
+                            'arrSta' => '上海虹桥',
+                            'depTime' => '09:00',
+                            'arrTime' => '14:49',
+                            'travelTime' => '4:28',
+                        )
+                    ),
+                    'seats' => array(
                         array(
                             'seatType' => '商务座',
                             'price' => '1873',
@@ -157,29 +137,7 @@ class leftTicketCtrl {
                             'price' => '600',
                         )
                     )
-                ),
-                array(
-                    'trainNum' => 'G1',
-                    'depSta' => '北京南',
-                    'arrSta' => '上海虹桥',
-                    'depTime' => '09:00',
-                    'arrTime' => '14:49',
-                    'duration' => '4:28',
-                    'seatList' => array(
-                        array(
-                            'seatType' => '商务座',
-                            'price' => '1873',
-                        ),
-                        array(
-                            'seatType' => '一等座',
-                            'price' => '1000',
-                        ),
-                        array(
-                            'seatType' => '二等座',
-                            'price' => '600',
-                        )
-                    )
-                ),
+                )),
             )
         ));
         die();
