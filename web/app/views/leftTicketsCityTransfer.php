@@ -150,6 +150,7 @@
                                                 <input class="form-check-input" type="radio" name="seatInfo-<?= $singleKey ?>" id="<?= $itemKey ?>-<?= $singleKey ?>-seatInfo-<?= $seatKey ?>" value="<?= $singleTicketItem->getSeatInfoJson($seatKey) ?>">
                                                 <label class="form-check-label" for="<?= $itemKey ?>-<?= $singleKey ?>-seatInfo-<?= $seatKey ?>">
                                                     <?= Symbol::seatType($seatItem['seatType']) ?>
+                                                    <?= $seatItem['ticketLeft'] ?>
                                                     ￥<?= $seatItem['price'] ?>
                                                 </label>
                                             </div>
