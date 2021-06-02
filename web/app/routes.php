@@ -18,6 +18,9 @@ Route::get('/login', 'AuthCtrl@loginPage');
 Route::post('/register', 'AuthCtrl@register');
 Route::get('/register', 'AuthCtrl@registerPage');
 
+Route::any('/admin', 'AdminCtrl@index');
+Route::any('/admin/orderList', 'AdminCtrl@orderList');
+
 Route::any('/leftTickets/City', 'LeftTicketCtrl@betweenCity');
 Route::any('/leftTickets/CityTransfer', 'LeftTicketCtrl@betweenCityTransfer');
 Route::any('/leftTickets/Train', 'LeftTicketCtrl@byTrainNum');

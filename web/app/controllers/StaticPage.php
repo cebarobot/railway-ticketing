@@ -12,6 +12,10 @@ use app\models\Ticket;
 
 class StaticPage {
     public static function index() {
+        if (Auth::isAdmin()) {
+            header("Location: /admin");
+            die();
+        }
         Support::includeView("index");
         die();
     }

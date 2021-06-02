@@ -87,4 +87,18 @@ class User {
         }
         return false;
     }
+
+    public static function getUserList() {
+        $sql = <<<SQLEOF
+select 
+    U_UserName as userName,
+    U_Name as name,
+    U_ID as id,
+    U_PhoneNum as phoneNum,
+    U_CreditCard as creditCard
+from myUser;
+SQLEOF;
+        $res = Database::selectAll($sql);
+        return $res;
+    }
 }

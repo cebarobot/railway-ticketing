@@ -14,6 +14,10 @@ class Auth {
         return self::$currentUser;
     }
 
+    public static function isAdmin() {
+        return self::$currentUser != null && self::$currentUser->userName == 'admin';
+    }
+
     public static function init() {
         if (Session::isSet('userName')) {
             self::$currentUser = new User;

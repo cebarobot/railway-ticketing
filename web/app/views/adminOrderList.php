@@ -1,34 +1,36 @@
 <?php
     use \foundation\Support;
     use \app\models\Symbol;
-    Support::includeView('pageHeader', array(
-        'pageTitle' => '订单',
-        'activeNavItem' => '订单信息',
-    ));
+    Support::includeView('pageHeader', array('pageTitle' => '管理'));
+
+    $isInvalidStr = isset($isInvalid) ? 'is-invalid' : '';
+    $userNameValue = isset($loginUserName) ? "value=\"$loginUserName\"" : '';
 ?>
 
 <main class="container mt-4">
     <div class="row mt-3">
         <div class="col-md-2 f-sm">
             <div class="nav nav-pills flex-column">
-                <a class="nav-link" href="#">个人中心</a>
-                <a class="nav-link active" href="#">我的订单</a>
-                <a class="nav-link" href="#">信息管理</a>
-                <a class="nav-link" href="#">投诉建议</a>
+                <a class="nav-link" href="/admin#basic">基本信息</a>
+                <a class="nav-link" href="/admin#hot">热点车次</a>
+                <a class="nav-link" href="/admin#users">注册用户</a>
+                <a class="nav-link" href="/admin#initSeats">放票</a>
+                <a class="nav-link active" href="#orders">订单</a>
             </div>
         </div>
         <div class="col-md-10">
-            <ul class="nav nav-tabs text-center f-sm">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">全部订单</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">未出行订单</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">已取消订单</a>
-                </li>
-            </ul>
+            <form class="row row-cols-lg-auto g-3 align-items-center" method="GET">
+                <div class="col-12">
+                    <label class="visually-hidden" for="userName">用户名</label>
+                    <div class="input-group">
+                        <div class="input-group-text"><i class="bi bi-person-circle"></i></div>
+                        <input type="text" class="form-control" id="userName" name="userName" value="<?= $_GET['userName'] ?? '' ?>">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
             <div class="order-list-box p-4">
                 <div class="">
                     <div class="row order-list-header py-2">
@@ -95,7 +97,7 @@
         </div>
     </div>
 </main>
-
+    
 <?php
     Support::includeView('pageFooter');
 ?>

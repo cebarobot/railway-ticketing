@@ -51,7 +51,7 @@ class OrderCtrl {
     
     public static function orderList() {
         $orderList = new OrderList();
-        $orderList->query();
+        $orderList->queryOfUser(Auth::user());
         Support::includeView("orderList", array(
             'orderList' => $orderList->list
         ));

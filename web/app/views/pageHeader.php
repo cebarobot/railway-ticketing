@@ -78,18 +78,22 @@
     <nav class="navbar navbar-expand navbar-cr-blue bg-cr-blue py-0">
         <div class="container d-flex flex-wrap">
             <ul class="navbar-nav me-auto">
-                <?php foreach ($navList as $navItem) : ?>
-                    <li class="nav-item">
-                        <a href="<?= $navItem['href'] ?>" class="nav-link px-md-4 px-lg-5 <?= ($activeItem == $navItem['name']) ? 'active' : '' ?>">
-                            <?= $navItem['name'] ?>
-                        </a>
-                    </li>
-                <?php endforeach ?>
+                <?php if (!Auth::isAdmin()): ?>
+                    <?php foreach ($navList as $navItem) : ?>
+                        <li class="nav-item">
+                            <a href="<?= $navItem['href'] ?>" class="nav-link px-md-4 px-lg-5 <?= ($activeItem == $navItem['name']) ? 'active' : '' ?>">
+                                <?= $navItem['name'] ?>
+                            </a>
+                        </li>
+                    <?php endforeach ?>
+                <?php endif ?>
             </ul>
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="#" class="nav-link px-lg-5">管理界面</a>
-                </li>
+                <?php if (Auth::isAdmin()): ?>
+                    <li class="nav-item">
+                        <a href="/admin" class="nav-link px-lg-5">管理界面</a>
+                    </li>
+                <?php endif ?>
             </ul>
         </div>
     </nav>
