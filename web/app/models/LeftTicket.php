@@ -46,4 +46,31 @@ class LeftTicket extends \foundation\BaseModel {
             $oneSingleTicket
         );
     }
+
+    public function initTrainRow($row, $trainNum, $date, $depSta) {
+        $oneSingleTicket = new LeftSingleTicket(array(
+            'trainNum' => $trainNum,
+            'date' => $date,
+            'depSta' => $depSta,
+            'arrSta' => $row[strtolower('station')],
+            'arrTime' => $row[strtolower('ArrivalTime')],
+            'depTime' => $row[strtolower('DepartureTime')],
+        ));
+        $seats = array();
+        foreach (Symbol::$seatTypeMap as $seatType => $value) {
+            $price = $row[strtolower($seatType.'Price')];
+            $ticketLeft = $row[strtolower($seatType.'TicketLeft')];
+            if ($price && $ticketLeft) {
+                $seats []= array(
+                    'seatType' => $seatType,
+                    'price' => floatval($price),
+                    'ticketLeft' => intval($ticketLeft),
+                );
+            }
+        }
+        $oneSingleTicket->seats = $seats;
+        $this->singleTickets = array(
+            $oneSingleTicket
+        );
+    }
 }

@@ -27,28 +27,21 @@
             <div class="card">
                 <div class="card-body">
                     <form class="row g-3 align-items-center">
-                        <div class="col-6 col-lg-3" >
+                        <div class="col-6 col-lg-4" >
                             <label class="visually-hidden" for="trainNum">车次</label>
                             <div class="input-group">
                                 <div class="input-group-text">车次</div>
                                 <input type="text" class="form-control" id="trainNum" name="trainNum" value="<?= $trainNum ?>">
                             </div>
                         </div>
-                        <div class="col-6 col-lg-3" >
-                            <label class="visually-hidden" for="depSta">出发站</label>
-                            <div class="input-group">
-                                <div class="input-group-text">出发站</div>
-                                <input type="text" class="form-control" id="depSta" name="depSta" value="<?= $depSta ?>">
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-3" >
+                        <div class="col-12 col-lg-4" >
                             <label class="visually-hidden" for="date">日期</label>
                             <div class="input-group">
                                 <div class="input-group-text">日期</div>
                                 <input type="date" class="form-control" id="date" name="date" value="<?= $curDate ?>">
                             </div>
                         </div>
-                        <div class="col-12 col-lg-3 btn-group">
+                        <div class="col-12 col-lg-4 btn-group">
                             <button class="btn btn-primary" formaction="/leftTickets/Train"><i class="bi bi-search"></i> 查找</button>
                         </div>
                     </form>
@@ -107,15 +100,15 @@
             <div class="ticket-list-box p-4">
                 <div class="row row-cols-auto mb-4">
                     <div class="fw-bold"><?= $trainNum ?></div>
-                    <div class=""><span class="fw-bold"><?= $depSta ?></span> <small>站出发</small></div>
+                    <div class=""><span class="fw-bold"><?= $depSta ?></span> <small>站 始发</small></div>
+                    <div class=""><span class="fw-bold"><?= $arrSta ?></span> <small>站 终到</small></div>
                     <div class="ms-3"><small class="text-secondary">(找到 <?= count($ticketList) ?> 条结果)</small></div>
                 </div>
                 <div class="mt-4">
                     <div class="row ticket-res-header py-2">
-                        <div class="ticket-no">车次</div>
-                        <div class="ticket-dep">出发</div>
-                        <div class="ticket-du">历时</div>
-                        <div class="ticket-arr">到达</div>
+                        <div class="ticket-station">车站</div>
+                        <div class="ticket-arr-time">到达时间</div>
+                        <div class="ticket-dep-time">出发时间</div>
                         <div class="ticket-price">票价</div>
                         <div class="ticket-btn"></div>
                     </div>
@@ -123,21 +116,19 @@
                         <div class="ticket-res-item py-3">
                             <?php foreach ($ticketItem->singleTickets as $singleTicketItem): ?>
                                 <div class="row ticket-info">
-                                    <div class="ticket-no"><?= $singleTicketItem->trainNum ?></div>
-                                    <div class="ticket-dep">
-                                        <div class="ticket-time"><?= $singleTicketItem->depTime ?></div>
-                                        <div class="ticket-sta"><?= $singleTicketItem->depSta ?></div>
-                                    </div>
-                                    <div class="ticket-du"><?= $singleTicketItem->travelTime ?></div>
-                                    <div class="ticket-arr">
+                                    <div class="ticket-station"><?= $singleTicketItem->arrSta ?></div>
+                                    <div class="ticket-arr-time">
                                         <div class="ticket-time"><?= $singleTicketItem->arrTime ?></div>
-                                        <div class="ticket-sta"><?= $singleTicketItem->arrSta ?></div>
+                                    </div>
+                                    <div class="ticket-dep-time">
+                                        <div class="ticket-time"><?= $singleTicketItem->depTime ?></div>
                                     </div>
                                     <div class="ticket-buy">
                                         <?php foreach ($singleTicketItem->seats as $seatKey => $seatItem): ?>
                                             <div class="ticket-buy-item row my-1">
                                                 <div class="ticket-buy-type">
                                                     <?= Symbol::seatType($seatItem['seatType']) ?>
+                                                    <?= $seatItem['ticketLeft'] ?>
                                                 </div>
                                                 <div class="ticket-buy-price">
                                                     ￥<?= $seatItem['price'] ?>

@@ -7,6 +7,8 @@ use foundation\Support;
 use app\models\LeftTicket;
 use app\models\LeftSingleTicket;
 use app\models\AllLeftTicketsCity;
+use app\models\AllLeftTicketsCityTransfer;
+use app\models\AllLeftTicketsTrain;
 
 class leftTicketCtrl {
     public static function betweenCity() {
@@ -94,38 +96,21 @@ class leftTicketCtrl {
 
     public static function byTrainNum() {
         $trainNum = $_GET['trainNum'] ?? 'G1';
-        $depSta = $_GET['depSta'] ?? '北京南';
         $date = $_GET['date'] ?? (new DateTime())->format('Y-m-d');
+        
+        $allTicketsLeftTrain = new AllLeftTicketsTrain(array(
+            'trainNum' => $trainNum,
+            'date' => $date,
+        ));
+        $allTicketsLeftTrain->query();
+
         Support::includeView("leftTicketsTrain", array(
             'type' => 'Train',
             'trainNum' => $trainNum,
-            'depSta' => $depSta,
             'curDate' => $date,
-            'ticketList' => array(
-                new LeftTicket(array(
-                    'singleTickets' => array(
-                        new LeftSingleTicket(array(
-                            'trainNum' => 'G1',
-                            'date' => '2021-06-04',
-                            'depSta' => '北京南',
-                            'arrSta' => '上海虹桥',
-                            'depTime' => '09:00',
-                            'arrTime' => '14:49',
-                            'travelTime' => '4:28',
-                            'seats' => array(
-                                array(
-                                    'seatType' => 'RZ',
-                                    'price' => '1000',
-                                ),
-                                array(
-                                    'seatType' => 'YZ',
-                                    'price' => '600',
-                                )
-                            )
-                        )),
-                    ),
-                )),
-            )
+            'depSta' => $allTicketsLeftTrain->depSta,
+            'arrSta' => $allTicketsLeftTrain->arrSta,
+            'ticketList' => $allTicketsLeftTrain->list
         ));
         die();
     }
