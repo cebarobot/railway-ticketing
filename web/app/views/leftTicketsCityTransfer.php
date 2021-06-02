@@ -128,9 +128,10 @@
                         <div class="ticket-btn"></div>
                     </div>
                     <?php foreach ($ticketList as $ticketItem): ?>
-                        <div class="ticket-res-item py-3">
-                            <?php foreach ($ticketItem->singleTickets as $singleTicketItem): ?>
-                                <div class="row ticket-info">
+                        <div class="ticket-res-item py-3"><form action="/orderCheck" method="POST">
+                            <input type="hidden" name="trainInfo" value="<?= $ticketItem->getTrainInfoJson() ?>">
+                            <?php foreach ($ticketItem->singleTickets as $singleKey => $singleTicketItem): ?>
+                                <div class="row ticket-info my-2">
                                     <div class="ticket-no"><?= $singleTicketItem->trainNum ?></div>
                                     <div class="ticket-dep">
                                         <div class="ticket-time"><?= $singleTicketItem->depTime ?></div>
@@ -140,31 +141,27 @@
                                     <div class="ticket-arr">
                                         <div class="ticket-time"><?= $singleTicketItem->arrTime ?></div>
                                         <div class="ticket-sta"><?= $singleTicketItem->arrSta ?></div>
+                                        
                                     </div>
-                                    <div class="ticket-buy">
+                                    <div class="ticket-price text-start">
                                         <?php foreach ($singleTicketItem->seats as $seatKey => $seatItem): ?>
-                                            <div class="ticket-buy-item row my-1">
-                                                <div class="ticket-buy-type">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="seatInfo-<?= $singleKey ?>" id="<?= $singleKey ?>-seatInfo-<?= $seatKey ?>" value="<?= $singleTicketItem->getSeatInfoJson($seatKey) ?>">
+                                                <label class="form-check-label" for="<?= $singleKey ?>-seatInfo-<?= $seatKey ?>">
                                                     <?= $seatItem['seatType'] ?>
-                                                </div>
-                                                <div class="ticket-buy-price">
                                                     ￥<?= $seatItem['price'] ?>
-                                                </div>
-                                                <div class="ticket-buy-btn">
-                                                    <form action="/orderCheck" method="POST">
-                                                        <input type="hidden" name="trainInfo" value="<?= $ticketItem->getTrainInfoJson() ?>">
-                                                        <input type="hidden" name="seatInfo-0" value="<?= $singleTicketItem->getSeatInfoJson($seatKey) ?>">
-                                                        <button class="btn btn-warning btn-sm">
-                                                            购买
-                                                        </button>
-                                                    </form>
-                                                </div>
+                                                </label>
                                             </div>
                                         <?php endforeach ?>
                                     </div>
+                                    <?php if ($singleKey == 1): ?>
+                                        <div class="ticket-btn row align-items-end">
+                                            <button class="btn btn-warning btn-sm">购买</button>
+                                        </div>
+                                    <?php endif ?>
                                 </div>
                             <?php endforeach ?>
-                        </div>
+                        </form></div>
                     <?php endforeach ?>
                 </div>
             </div>

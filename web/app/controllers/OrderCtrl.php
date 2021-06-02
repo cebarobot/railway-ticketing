@@ -10,8 +10,9 @@ class OrderCtrl {
         $trainInfo = json_decode($_POST['trainInfo'], true);
         $totalPrice = 0;
         foreach ($trainInfo as $key => $oneTrainInfo) {
-            $trainInfo[$key]['seatType'] = $_POST['seatType-'.$key];
-            $trainInfo[$key]['price'] = $_POST['price-'.$key];
+            $seatInfo = json_decode($_POST['seatInfo-'.$key], true);
+            $trainInfo[$key]['seatType'] = $seatInfo['seatType'];
+            $trainInfo[$key]['price'] = $seatInfo['price'];
             $totalPrice += intval($trainInfo[$key]['price']);
         }
         Support::includeView('orderCheck', array(

@@ -119,40 +119,42 @@
                         <div class="ticket-btn"></div>
                     </div>
                     <?php foreach ($ticketList as $ticketItem): ?>
-                        <div class="row ticket-res-item py-4">
-                            <div class="ticket-info">
-                                <?php foreach ($ticketItem['singleTicketList'] as $singleTicketItem): ?>
-                                    <div class="row ticket-info-item my-3">
-                                        <div class="ticket-info-no"><?= $singleTicketItem['trainNum'] ?></div>
-                                        <div class="ticket-info-dep">
-                                            <div class="ticket-time"><?= $singleTicketItem['depTime'] ?></div>
-                                            <div class="ticket-sta"><?= $singleTicketItem['depSta'] ?></div>
-                                        </div>
-                                        <div class="ticket-info-du"><?= $singleTicketItem['duration'] ?></div>
-                                        <div class="ticket-info-arr">
-                                            <div class="ticket-time"><?= $singleTicketItem['arrTime'] ?></div>
-                                            <div class="ticket-sta"><?= $singleTicketItem['arrSta'] ?></div>
-                                        </div>
+                        <div class="ticket-res-item py-3">
+                            <?php foreach ($ticketItem->singleTickets as $singleTicketItem): ?>
+                                <div class="row ticket-info">
+                                    <div class="ticket-no"><?= $singleTicketItem->trainNum ?></div>
+                                    <div class="ticket-dep">
+                                        <div class="ticket-time"><?= $singleTicketItem->depTime ?></div>
+                                        <div class="ticket-sta"><?= $singleTicketItem->depSta ?></div>
                                     </div>
-                                <?php endforeach ?>
-                            </div>
-                            <div class="ticket-buy">
-                                <?php foreach ($ticketItem['seatList'] as $seatItem): ?>
-                                    <div class="ticket-buy-item row my-1">
-                                        <div class="ticket-buy-type">
-                                            <?= $seatItem['seatType'] ?>
-                                        </div>
-                                        <div class="ticket-buy-price">
-                                            ￥<?= $seatItem['price'] ?>
-                                        </div>
-                                        <div class="ticket-buy-btn">
-                                            <button class="btn btn-warning btn-sm">
-                                                购买
-                                            </button>
-                                        </div>
+                                    <div class="ticket-du"><?= $singleTicketItem->travelTime ?></div>
+                                    <div class="ticket-arr">
+                                        <div class="ticket-time"><?= $singleTicketItem->arrTime ?></div>
+                                        <div class="ticket-sta"><?= $singleTicketItem->arrSta ?></div>
                                     </div>
-                                <?php endforeach ?>
-                            </div>
+                                    <div class="ticket-buy">
+                                        <?php foreach ($singleTicketItem->seats as $seatKey => $seatItem): ?>
+                                            <div class="ticket-buy-item row my-1">
+                                                <div class="ticket-buy-type">
+                                                    <?= $seatItem['seatType'] ?>
+                                                </div>
+                                                <div class="ticket-buy-price">
+                                                    ￥<?= $seatItem['price'] ?>
+                                                </div>
+                                                <div class="ticket-buy-btn">
+                                                    <form action="/orderCheck" method="POST">
+                                                        <input type="hidden" name="trainInfo" value="<?= $ticketItem->getTrainInfoJson() ?>">
+                                                        <input type="hidden" name="seatInfo-0" value="<?= $singleTicketItem->getSeatInfoJson($seatKey) ?>">
+                                                        <button class="btn btn-warning btn-sm">
+                                                            购买
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        <?php endforeach ?>
+                                    </div>
+                                </div>
+                            <?php endforeach ?>
                         </div>
                     <?php endforeach ?>
                 </div>
