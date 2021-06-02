@@ -16,7 +16,7 @@ class OrderCtrl {
             $seatInfo = json_decode($_POST['seatInfo-'.$key], true);
             $trainInfo[$key]['seatType'] = $seatInfo['seatType'];
             $trainInfo[$key]['price'] = $seatInfo['price'];
-            $totalPrice += intval($trainInfo[$key]['price']);
+            $totalPrice += floatval($trainInfo[$key]['price']);
         }
         Support::includeView('orderCheck', array(
             'trainInfo' => $trainInfo,

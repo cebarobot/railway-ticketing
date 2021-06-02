@@ -30,28 +30,35 @@
             <div class="card">
                 <div class="card-body">
                     <form class="row g-3 align-items-center" method="GET">
-                        <div class="col-6 col-lg-3" >
+                        <div class="col-6 col-lg-6" >
                             <label class="visually-hidden" for="fromCity">出发地</label>
                             <div class="input-group">
                                 <div class="input-group-text">出发地</div>
                                 <input type="text" class="form-control" id="fromCity" name="fromCity" value="<?= $fromCity ?>">
                             </div>
                         </div>
-                        <div class="col-6 col-lg-3" >
+                        <div class="col-6 col-lg-6" >
                             <label class="visually-hidden" for="toCity">目的地</label>
                             <div class="input-group">
                                 <div class="input-group-text">目的地</div>
                                 <input type="text" class="form-control" id="toCity" name="toCity" value="<?= $toCity ?>">
                             </div>
                         </div>
-                        <div class="col-12 col-lg-3" >
+                        <div class="col-6 col-lg-4" >
                             <label class="visually-hidden" for="date">日期</label>
                             <div class="input-group">
                                 <div class="input-group-text">日期</div>
                                 <input type="date" class="form-control" id="date" name="date" value="<?= $curDate ?>">
                             </div>
                         </div>
-                        <div class="col-12 col-lg-3 btn-group">
+                        <div class="col-6 col-lg-4" >
+                            <label class="visually-hidden" for="time">时间</label>
+                            <div class="input-group">
+                                <div class="input-group-text">时间</div>
+                                <input type="time" class="form-control" id="time" name="time" value="<?= $time ?>">
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4 btn-group">
                             <button class="btn btn-primary" formaction="/leftTickets/City"><i class="bi bi-search"></i> 直达</button>
                             <button class="btn btn-primary" formaction="/leftTickets/CityTransfer"><i class="bi bi-search"></i> 换乘</button>
                             <a class="btn btn-secondary" href="<?= $returnLink ?>">返程</a>
@@ -147,6 +154,7 @@
                                             <div class="ticket-buy-item row my-1">
                                                 <div class="ticket-buy-type">
                                                     <?= Symbol::seatType($seatItem['seatType']) ?>
+                                                    <?= $seatItem['ticketLeft'] ?>
                                                 </div>
                                                 <div class="ticket-buy-price">
                                                     ￥<?= $seatItem['price'] ?>

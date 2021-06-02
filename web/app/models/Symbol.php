@@ -2,7 +2,7 @@
 namespace app\models;
 
 class Symbol {
-    private static $seatTypeMap = array(
+    public static $seatTypeMap = array(
         'YZ' => '硬座',
         'RZ' => '软座',
         'YW1' => '硬卧 上铺',
