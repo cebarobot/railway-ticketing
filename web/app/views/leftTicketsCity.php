@@ -1,5 +1,6 @@
 <?php
     use \foundation\Support;
+    use \app\models\Symbol;
     Support::includeView('pageHeader', array(
         'pageTitle' => '购买车票',
         'activeNavItem' => '购买车票',
@@ -145,7 +146,7 @@
                                         <?php foreach ($singleTicketItem->seats as $seatKey => $seatItem): ?>
                                             <div class="ticket-buy-item row my-1">
                                                 <div class="ticket-buy-type">
-                                                    <?= $seatItem['seatType'] ?>
+                                                    <?= Symbol::seatType($seatItem['seatType']) ?>
                                                 </div>
                                                 <div class="ticket-buy-price">
                                                     ￥<?= $seatItem['price'] ?>

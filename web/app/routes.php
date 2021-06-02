@@ -9,7 +9,6 @@ function asdf() {
 }
 
 Route::any('/', 'StaticPage@index');
-Route::any('/orderList', 'StaticPage@orderList');
 
 Route::any('/logout', 'AuthCtrl@logout');
 
@@ -24,3 +23,5 @@ Route::any('/leftTickets/CityTransfer', 'LeftTicketCtrl@betweenCityTransfer');
 Route::any('/leftTickets/Train', 'LeftTicketCtrl@byTrainNum');
 
 Route::post('/orderCheck', 'OrderCtrl@orderCheck');
+Route::any('/orderSumbit', 'OrderCtrl@orderSumbit');
+Route::any('/orderList', 'OrderCtrl@orderList');

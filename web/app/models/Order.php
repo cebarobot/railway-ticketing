@@ -40,6 +40,16 @@ SQLEOF;
 
         var_dump($this);
     }
+
+    public function submit() {
+        $this->status = 'reserved';
+        foreach ($this->ticketList as $oneTicket) {
+            $oneTicket->updateSeatInfo();
+            $oneTicket->insert();
+        }
+        $this->insert();
+    }
+
     public function cancel() {
 
     }

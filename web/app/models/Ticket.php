@@ -10,13 +10,13 @@ class Ticket extends \foundation\BaseModel {
     public $trainNum;
     public $date;
     public $depSta;
-    public $depTime;
     public $arrSta;
-    public $passengerName;
-    public $passengerID;
     public $seatType;
     public $price;
-    public $status;
+    
+    public $depTime;
+    public $passengerName;
+    public $passengerID;
 
     public function query() {
 
@@ -48,5 +48,9 @@ insert into TicketInfo (
 SQLEOF;
         $res = Database::query($sql);
         $this->ticketID = intval(Database::fetchRow($res)[0]);
+    }
+
+    public function updateSeatInfo() {
+        
     }
 }

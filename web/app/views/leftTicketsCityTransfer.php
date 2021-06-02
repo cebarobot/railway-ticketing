@@ -1,5 +1,6 @@
 <?php
     use \foundation\Support;
+    use \app\models\Symbol;
     Support::includeView('pageHeader', array(
         'pageTitle' => '购买车票',
         'activeNavItem' => '购买车票',
@@ -148,7 +149,7 @@
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="seatInfo-<?= $singleKey ?>" id="<?= $singleKey ?>-seatInfo-<?= $seatKey ?>" value="<?= $singleTicketItem->getSeatInfoJson($seatKey) ?>">
                                                 <label class="form-check-label" for="<?= $singleKey ?>-seatInfo-<?= $seatKey ?>">
-                                                    <?= $seatItem['seatType'] ?>
+                                                    <?= Symbol::seatType($seatItem['seatType']) ?>
                                                     ￥<?= $seatItem['price'] ?>
                                                 </label>
                                             </div>

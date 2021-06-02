@@ -19,6 +19,10 @@ class Database {
     public static function query($querySQL) {
         return pg_query(self::$pgConnection, $querySQL);
     }
+
+    public static function fetchRow($res, $row = null, $result_type = PGSQL_NUM) {
+        return pg_fetch_row($res, $row, $result_type);
+    }
     
 	public static function selectFirst($querySQL, $opt = PGSQL_ASSOC) {
         $res = pg_query(self::$pgConnection, $querySQL);
@@ -28,7 +32,7 @@ class Database {
 		return false;
     }
 
-    public static function updateOne($table, $data, $cond) {
+    public static function updateOne($table, $data, $cond, $debug = false) {
         $sql = "update $table ";
         $setList = "";
         foreach ($data as $list => $value) {
@@ -48,11 +52,14 @@ class Database {
 
         $sql .= "set $setList where $whereList;";
 
-        // var_dump($sql);
+        if ($debug) {
+            var_dump($sql);
+            return;
+        }
         self::query($sql);
     }
 
-    public static function insertOne($table, $data) {
+    public static function insertOne($table, $data, $debug = false) {
         $sql = "insert into $table ";
         $listList = "";
         $valueList = "";
@@ -67,7 +74,34 @@ class Database {
 
         $sql .= "($listList) values ($valueList);";
 
-        // var_dump($sql);
+        if ($debug) {
+            var_dump($sql);
+            return;
+        }
         self::query($sql);
+    }
+
+    public static function insertOneGetId($table, $data, $idName, $debug = false) {
+        $sql = "insert into $table ";
+        $listList = "";
+        $valueList = "";
+        foreach ($data as $list => $value) {
+            $listEscape = self::escape($list);
+            $valueEscape = self::escape($value);
+            $listList .= "$listEscape, ";
+            $valueList .= "'$valueEscape', ";
+        }
+        $listList = substr($listList, 0, -2);
+        $valueList = substr($valueList, 0, -2);
+
+        $sql .= "($listList) values ($valueList) ";
+        $sql .= "return $idName";
+
+        if ($debug) {
+            var_dump($sql);
+            return;
+        }
+        $res = self::query($sql);
+        return pg_fetch_row($res)[0];
     }
 }

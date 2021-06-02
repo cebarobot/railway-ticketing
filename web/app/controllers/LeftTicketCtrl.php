@@ -31,15 +31,11 @@ class leftTicketCtrl {
                             'travelTime' => '4:28',
                             'seats' => array(
                                 array(
-                                    'seatType' => '商务座',
-                                    'price' => '1873',
-                                ),
-                                array(
-                                    'seatType' => '一等座',
+                                    'seatType' => 'RZ',
                                     'price' => '1000',
                                 ),
                                 array(
-                                    'seatType' => '二等座',
+                                    'seatType' => 'YZ',
                                     'price' => '600',
                                 )
                             )
@@ -74,15 +70,11 @@ class leftTicketCtrl {
                             'travelTime' => '4:28',
                             'seats' => array(
                                 array(
-                                    'seatType' => '商务座',
-                                    'price' => '1873',
-                                ),
-                                array(
-                                    'seatType' => '一等座',
+                                    'seatType' => 'RZ',
                                     'price' => '1000',
                                 ),
                                 array(
-                                    'seatType' => '二等座',
+                                    'seatType' => 'YZ',
                                     'price' => '600',
                                 )
                             )
@@ -97,15 +89,11 @@ class leftTicketCtrl {
                             'travelTime' => '4:28',
                             'seats' => array(
                                 array(
-                                    'seatType' => '商务座',
-                                    'price' => '1873',
-                                ),
-                                array(
-                                    'seatType' => '一等座',
+                                    'seatType' => 'RZ',
                                     'price' => '1000',
                                 ),
                                 array(
-                                    'seatType' => '二等座',
+                                    'seatType' => 'YZ',
                                     'price' => '600',
                                 )
                             )
@@ -139,15 +127,11 @@ class leftTicketCtrl {
                             'travelTime' => '4:28',
                             'seats' => array(
                                 array(
-                                    'seatType' => '商务座',
-                                    'price' => '1873',
-                                ),
-                                array(
-                                    'seatType' => '一等座',
+                                    'seatType' => 'RZ',
                                     'price' => '1000',
                                 ),
                                 array(
-                                    'seatType' => '二等座',
+                                    'seatType' => 'YZ',
                                     'price' => '600',
                                 )
                             )

@@ -1,5 +1,6 @@
 <?php
     use \foundation\Support;
+    use \app\models\Symbol;
     Support::includeView('pageHeader', array(
         'pageTitle' => '确认订单',
         'activeNavItem' => '订单信息',
@@ -34,7 +35,8 @@
                             </div>
                             <div class="col-2">
                                 <label for="seatType-<?= $key ?>" class="form-label">坐席</label>
-                                <input type="text" class="form-control" id="seatType-<?= $key ?>" name="seatType-<?= $key ?>" value="<?= $oneTrainInfo['seatType'] ?>" readonly>
+                                <input type="hidden" name="seatType-<?= $key ?>" value="<?= $oneTrainInfo['seatType'] ?>">
+                                <input type="text" class="form-control" id="seatType-<?= $key ?>" name="seatTypeShow-<?= $key ?>" value="<?= Symbol::seatType($oneTrainInfo['seatType']) ?>" readonly>
                             </div>
                             <div class="col-2">
                                 <label for="price-<?= $key ?>" class="form-label">票价</label>

@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use foundation\Support;
 use app\models\Auth;
+use app\models\Order;
+use app\models\Ticket;
 
 class OrderCtrl {
     public static function orderCheck() {
@@ -20,6 +22,64 @@ class OrderCtrl {
             'passengerName' => Auth::user()->name,
             'passengerID' => Auth::user()->id,
             'totalPrice' => $totalPrice,
+        ));
+        die();
+    }
+
+    public static function orderSumbit() {
+        $ticketCnt = $_POST['ticketCnt'];
+        $ticketList = array();
+        for ($i = 0; $i < $ticketCnt; $i++) {
+            $ticketList []= new Ticket(array(
+                'trainNum' => $_POST["trainNum-$i"],
+                'date' => $_POST["date-$i"],
+                'depSta' => $_POST["depSta-$i"],
+                'arrSta' => $_POST["arrSta-$i"],
+                'seatType' => $_POST["seatType-$i"],
+                'price' => $_POST["price-$i"],
+            ));
+        }
+        $order = new Order(array(
+            'ticketList' => $ticketList
+        ));
+        $order->submit();
+
+        header("Location: /orderList");
+    }
+    
+    public static function orderList() {
+        Support::includeView("orderList", array(
+            'orderList' => array(
+                new Order(array(
+                    'orderDate' => '2021-06-01',
+                    'orderID' => '23333',
+                    'status' => '已完成',
+                    'ticketList' => array(
+                        new Ticket(array(
+                            'trainNum' => 'S512',
+                            'depSta' => '北京北',
+                            'arrSta' => '怀柔北',
+                            'date' => '2021-06-01',
+                            'depTime' => '16:23',
+                            'passengerName' => '徐泽凡',
+                            'seatType' => 'YZ',
+                            'price' => '20',
+                            'status' => '已完成'
+                        )),
+                        new Ticket(array(
+                            'trainNum' => 'S612',
+                            'depSta' => '北京西',
+                            'arrSta' => '通州西',
+                            'date' => '2021-06-01',
+                            'depTime' => '16:23',
+                            'passengerName' => '徐泽凡',
+                            'seatType' => 'YZ',
+                            'price' => '20',
+                            'status' => '已完成'
+                        ))
+                    )
+                ))
+            )
         ));
         die();
     }
