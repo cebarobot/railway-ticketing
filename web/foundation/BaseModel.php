@@ -2,7 +2,7 @@
 namespace foundation;
 
 class BaseModel {
-    function __construct($data) {
+    function __construct($data = array()) {
         $this->set($data);
     }
 

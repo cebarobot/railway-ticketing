@@ -32,6 +32,15 @@ class Database {
 		return false;
     }
 
+    public static function selectAll($querySQL) {
+        $res = pg_query(self::$pgConnection, $querySQL);
+        $arr = array();
+        while($row = pg_fetch_assoc($res)) {
+            $arr []= $row;
+        }
+        return $arr;
+    }
+
     public static function updateOne($table, $data, $cond, $debug = false) {
         $sql = "update $table ";
         $setList = "";

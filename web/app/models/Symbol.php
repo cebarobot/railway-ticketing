@@ -15,4 +15,13 @@ class Symbol {
     public static function seatType($str) {
         return self::$seatTypeMap[$str];
     }
+
+    private static $statusMap = array(
+        'reserved' => '已完成',
+        'cancelled' => '已取消',
+    );
+
+    public static function status($str) {
+        return self::$statusMap[$str];
+    }
 }

@@ -25,3 +25,5 @@ Route::any('/leftTickets/Train', 'LeftTicketCtrl@byTrainNum');
 Route::post('/orderCheck', 'OrderCtrl@orderCheck');
 Route::any('/orderSumbit', 'OrderCtrl@orderSumbit');
 Route::any('/orderList', 'OrderCtrl@orderList');
+Route::any('/orderCancel', 'OrderCtrl@orderCancel');
+Route::any('/orderPrint', 'OrderCtrl@orderPrint');

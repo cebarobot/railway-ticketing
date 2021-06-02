@@ -5,6 +5,7 @@ namespace app\controllers;
 use foundation\Support;
 use app\models\Auth;
 use app\models\Order;
+use app\models\OrderList;
 use app\models\Ticket;
 
 class OrderCtrl {
@@ -48,38 +49,10 @@ class OrderCtrl {
     }
     
     public static function orderList() {
+        $orderList = new OrderList();
+        $orderList->query();
         Support::includeView("orderList", array(
-            'orderList' => array(
-                new Order(array(
-                    'orderDate' => '2021-06-01',
-                    'orderID' => '23333',
-                    'status' => '已完成',
-                    'ticketList' => array(
-                        new Ticket(array(
-                            'trainNum' => 'S512',
-                            'depSta' => '北京北',
-                            'arrSta' => '怀柔北',
-                            'date' => '2021-06-01',
-                            'depTime' => '16:23',
-                            'passengerName' => '徐泽凡',
-                            'seatType' => 'YZ',
-                            'price' => '20',
-                            'status' => '已完成'
-                        )),
-                        new Ticket(array(
-                            'trainNum' => 'S612',
-                            'depSta' => '北京西',
-                            'arrSta' => '通州西',
-                            'date' => '2021-06-01',
-                            'depTime' => '16:23',
-                            'passengerName' => '徐泽凡',
-                            'seatType' => 'YZ',
-                            'price' => '20',
-                            'status' => '已完成'
-                        ))
-                    )
-                ))
-            )
+            'orderList' => $orderList->list
         ));
         die();
     }
