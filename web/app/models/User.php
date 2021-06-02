@@ -41,7 +41,8 @@ class User {
         }
         $userNameEscape = Database::escape($this->userName);
         $idEscape = Database::escape($this->id);
-        $result = Database::selectFirst("select * from MyUser where U_UserName = '$userNameEscape' or U_ID = '$idEscape';");
+        $phoneEscape = Database::escape($this->phoneNum);
+        $result = Database::selectFirst("select * from MyUser where U_UserName = '$userNameEscape' or U_ID = '$idEscape' or U_PhoneNum = '$phoneEscape';");
         if ($result) {
             return true;
         }
