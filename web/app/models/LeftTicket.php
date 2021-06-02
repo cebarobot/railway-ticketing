@@ -47,6 +47,58 @@ class LeftTicket extends \foundation\BaseModel {
         );
     }
 
+    public function initCityTransferRow($row, $date) {
+        $oneSingleTicket = new LeftSingleTicket(array(
+            'trainNum' => $row[strtolower('TrainNum1')],
+            'date' => $date,
+            'depSta' => $row[strtolower('Station1')],
+            'depTime' => $row[strtolower('DepartureTime')],
+            'arrSta' => $row[strtolower('Station2')],
+            'arrTime' => $row[strtolower('TransferTime1')]
+        ));
+        $oneSeats = array();
+        foreach (Symbol::$seatTypeMap as $seatType => $value) {
+            $price = $row[strtolower($seatType.'Price1')];
+            $ticketLeft = $row[strtolower($seatType.'TicketLeft1')];
+            if ($price && $ticketLeft) {
+                $oneSeats []= array(
+                    'seatType' => $seatType,
+                    'price' => floatval($price),
+                    'ticketLeft' => intval($ticketLeft),
+                );
+            }
+        }
+        $oneSingleTicket->seats = $oneSeats;
+
+        $twoSingleTicket = new LeftSingleTicket(array(
+            'trainNum' => $row[strtolower('TrainNum2')],
+            'date' => $date,
+            'depSta' => $row[strtolower('Station3')],
+            'depTime' => $row[strtolower('TransferTime2')],
+            'arrSta' => $row[strtolower('Station4')],
+            'arrTime' => $row[strtolower('ArrivalTime')],
+            'travelTime' => $row[strtolower('TotalTime')]
+        ));
+        $twoSeats = array();
+        foreach (Symbol::$seatTypeMap as $seatType => $value) {
+            $price = $row[strtolower($seatType.'Price2')];
+            $ticketLeft = $row[strtolower($seatType.'TicketLeft2')];
+            if ($price && $ticketLeft) {
+                $twoSeats []= array(
+                    'seatType' => $seatType,
+                    'price' => floatval($price),
+                    'ticketLeft' => intval($ticketLeft),
+                );
+            }
+        }
+        $twoSingleTicket->seats = $twoSeats;
+
+        $this->singleTickets = array(
+            $oneSingleTicket,
+            $twoSingleTicket,
+        );
+    }
+
     public function initTrainRow($row, $trainNum, $date, $depSta) {
         $oneSingleTicket = new LeftSingleTicket(array(
             'trainNum' => $trainNum,

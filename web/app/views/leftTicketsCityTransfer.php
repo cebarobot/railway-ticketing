@@ -128,7 +128,7 @@
                         <div class="ticket-price">票价</div>
                         <div class="ticket-btn"></div>
                     </div>
-                    <?php foreach ($ticketList as $ticketItem): ?>
+                    <?php foreach ($ticketList as $itemKey => $ticketItem): ?>
                         <div class="ticket-res-item py-3"><form action="/orderCheck" method="POST">
                             <input type="hidden" name="trainInfo" value="<?= $ticketItem->getTrainInfoJson() ?>">
                             <?php foreach ($ticketItem->singleTickets as $singleKey => $singleTicketItem): ?>
@@ -147,8 +147,8 @@
                                     <div class="ticket-price text-start">
                                         <?php foreach ($singleTicketItem->seats as $seatKey => $seatItem): ?>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="seatInfo-<?= $singleKey ?>" id="<?= $singleKey ?>-seatInfo-<?= $seatKey ?>" value="<?= $singleTicketItem->getSeatInfoJson($seatKey) ?>">
-                                                <label class="form-check-label" for="<?= $singleKey ?>-seatInfo-<?= $seatKey ?>">
+                                                <input class="form-check-input" type="radio" name="seatInfo-<?= $singleKey ?>" id="<?= $itemKey ?>-<?= $singleKey ?>-seatInfo-<?= $seatKey ?>" value="<?= $singleTicketItem->getSeatInfoJson($seatKey) ?>">
+                                                <label class="form-check-label" for="<?= $itemKey ?>-<?= $singleKey ?>-seatInfo-<?= $seatKey ?>">
                                                     <?= Symbol::seatType($seatItem['seatType']) ?>
                                                     ￥<?= $seatItem['price'] ?>
                                                 </label>
