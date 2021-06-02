@@ -29,7 +29,7 @@
                 </li>
             </ul>
             <div class="order-list-box p-4">
-                <div class="mt-4">
+                <div class="">
                     <div class="row order-list-header py-2">
                         <div class="order-train">车次信息</div>
                         <div class="order-passenger">旅客</div>
@@ -43,36 +43,36 @@
                                 <i class="bi bi-card-heading"></i>
                                 <div>
                                     <span>订票日期：</span>
-                                    <span><?= $orderItem['orderDate'] ?></span>
+                                    <span><?= $orderItem->orderDate ?></span>
                                 </div>
                                 <div>
                                     <span>订单号：</span>
-                                    <span><?= $orderItem['orderID'] ?></span>
+                                    <span><?= $orderItem->orderID ?></span>
                                 </div>
                             </div>
-                            <?php foreach ($orderItem['ticketList'] as $ticketItem): ?>
+                            <?php foreach ($orderItem->ticketList as $ticketItem): ?>
                                 <div class="row order-item-body">
                                     <div class="order-train">
                                         <div>
-                                            <span><?= $ticketItem['trainNum'] ?></span>
-                                            <span><?= $ticketItem['depSta'] ?></span>
+                                            <span><?= $ticketItem->trainNum ?></span>
+                                            <span><?= $ticketItem->depSta ?></span>
                                             <i class="bi bi-arrow-right"></i>
-                                            <span><?= $ticketItem['arrSta'] ?></span>
+                                            <span><?= $ticketItem->arrSta ?></span>
                                         </div>
                                         <div>
-                                            <span><?= $ticketItem['date'] ?></span>
-                                            <span><?= $ticketItem['depTime'] ?></span>
+                                            <span><?= $ticketItem->date ?></span>
+                                            <span><?= $ticketItem->depTime ?></span>
                                             <span>开</span>
                                         </div>
                                     </div>
                                     <div class="order-passenger">
-                                        <div><?= $ticketItem['passengerName'] ?></div>
+                                        <div><?= $ticketItem->passengerName ?></div>
                                         <div>中国居民身份证</div>
                                     </div>
-                                    <div class="order-seat"><?= $ticketItem['seatType'] ?></div>
-                                    <div class="order-price">￥<?= $ticketItem['price'] ?></div>
+                                    <div class="order-seat"><?= $ticketItem->seatType ?></div>
+                                    <div class="order-price">￥<?= $ticketItem->price ?></div>
                                     <div class="order-status">
-                                        <div><?= $ticketItem['status'] ?></div>
+                                        <div><?= $ticketItem->status ?></div>
                                         <div>
                                             <button class="btn btn-warning btn-sm">退票</button>
                                         </div>
