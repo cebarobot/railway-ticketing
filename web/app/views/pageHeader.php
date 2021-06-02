@@ -18,11 +18,11 @@
         ),
         array(
             'name' => '购买车票',
-            'href' => '/leftTickets',
+            'href' => '/leftTickets/City',
         ),
         array(
             'name' => '车次查询',
-            'href' => '#',
+            'href' => '/leftTickets/Train',
         ),
         array(
             'name' => '订单信息',

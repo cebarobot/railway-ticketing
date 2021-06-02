@@ -1,10 +1,14 @@
 <?php
 
 namespace app\controllers;
+
 use foundation\Support;
+use foundation\Session;
+
 use app\models\User;
 use app\models\Auth;
-use foundation\Session;
+use app\models\Order;
+use app\models\Ticket;
 
 class StaticPage {
     public static function index() {
@@ -12,68 +16,14 @@ class StaticPage {
         die();
     }
 
-    public static function leftTickets() {
-        Support::includeView("leftTickets", array(
-            'fromCity' => '北京',
-            'toCity' => '上海',
-            'ticketList' => array(
-                array(
-                    'trainNum' => 'G1',
-                    'depSta' => '北京南',
-                    'arrSta' => '上海虹桥',
-                    'depTime' => '09:00',
-                    'arrTime' => '14:49',
-                    'duration' => '4:28',
-                    'seatList' => array(
-                        array(
-                            'seatType' => '商务座',
-                            'price' => '1873',
-                        ),
-                        array(
-                            'seatType' => '一等座',
-                            'price' => '1000',
-                        ),
-                        array(
-                            'seatType' => '二等座',
-                            'price' => '600',
-                        )
-                    )
-                ),
-                array(
-                    'trainNum' => 'G1',
-                    'depSta' => '北京南',
-                    'arrSta' => '上海虹桥',
-                    'depTime' => '09:00',
-                    'arrTime' => '14:49',
-                    'duration' => '4:28',
-                    'seatList' => array(
-                        array(
-                            'seatType' => '商务座',
-                            'price' => '1873',
-                        ),
-                        array(
-                            'seatType' => '一等座',
-                            'price' => '1000',
-                        ),
-                        array(
-                            'seatType' => '二等座',
-                            'price' => '600',
-                        )
-                    )
-                ),
-            )
-        ));
-        die();
-    }
-
     public static function orderList() {
         Support::includeView("orderList", array(
             'orderList' => array(
-                array(
+                new Order(array(
                     'orderDate' => '2021-06-01',
                     'orderID' => '23333',
                     'ticketList' => array(
-                        array(
+                        new Ticket(array(
                             'trainNum' => 'S512',
                             'depSta' => '北京北',
                             'arrSta' => '怀柔北',
@@ -83,8 +33,8 @@ class StaticPage {
                             'seatType' => '二等座',
                             'price' => '20',
                             'status' => '已完成'
-                        ),
-                        array(
+                        )),
+                        new Ticket(array(
                             'trainNum' => 'S612',
                             'depSta' => '北京西',
                             'arrSta' => '通州西',
@@ -94,9 +44,9 @@ class StaticPage {
                             'seatType' => '二等座',
                             'price' => '20',
                             'status' => '已完成'
-                        )
+                        ))
                     )
-                )
+                ))
             )
         ));
         die();
