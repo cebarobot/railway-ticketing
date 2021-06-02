@@ -89,7 +89,7 @@ class User {
     }
 
     public static function getUserList() {
-        $sql = <<<SQLEOF
+        $sql = <<<SQL
 select 
     U_UserName as userName,
     U_Name as name,
@@ -97,7 +97,7 @@ select
     U_PhoneNum as phoneNum,
     U_CreditCard as creditCard
 from myUser;
-SQLEOF;
+SQL;
         $res = Database::selectAll($sql);
         return $res;
     }

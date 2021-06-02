@@ -29,7 +29,7 @@ class Ticket extends \foundation\BaseModel {
         $arrSta = $this->arrSta;
         $seatType = $this->seatType;
         $price = $this->price;
-        $sql = <<<SQLEOF
+        $sql = <<<SQL
 insert into TicketInfo (
     trainNum,
     trainDate,
@@ -45,13 +45,14 @@ insert into TicketInfo (
     (select t_stopnum from train where (t_number = '{$trainNum}' and t_station = '{$arrSta}')),
     '{$price}'
 ) returning id;
-SQLEOF;
+SQL;
         $res = Database::query($sql);
         $this->ticketID = intval(Database::fetchRow($res)[0]);
     }
 
     public function requireSeatInfo() {
-        
+        $sql = <<<SQL
+SQL;
     }
 
     public function releaseSeatInfo() {

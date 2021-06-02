@@ -21,11 +21,11 @@ class AdminCtrl {
 
     public static function initSeat() {
         $dateStr = (new DateTime($_GET['date']))->format('Y-m-d');
-        $sql = <<<SQLEOF
+        $sql = <<<SQL
 insert into Seat
 select TP_TrainNum, '$dateStr', TP_SeatType, TP_ArrivalNum, 5
 from TicketPrice;
-SQLEOF;
+SQL;
         Database::query($sql);
         header("Location: /admin");
     }

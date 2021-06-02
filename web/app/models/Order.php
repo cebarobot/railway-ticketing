@@ -13,7 +13,7 @@ class Order extends \foundation\BaseModel {
     public $ticketList;
 
     private static function query($cond) {
-        $sql = <<<SQLEOF
+        $sql = <<<SQL
 select
     OrderInfo.id as orderID,
     OrderInfo.orderTime as orderTime,
@@ -38,7 +38,7 @@ from (
     left outer join TicketInfo as Ticket1 on OrderInfo.ticketID1 = Ticket1.id
     left outer join TicketInfo as Ticket2 on OrderInfo.ticketID2 = Ticket2.id
 ) where {$cond};
-SQLEOF;
+SQL;
         return Database::selectAll($sql);
     }
 
@@ -89,7 +89,7 @@ SQLEOF;
         $userName = Auth::user()->userName;
         $ticketID1 = isset($this->ticketList[0])? $this->ticketList[0]->ticketID : 'null';
         $ticketID2 = isset($this->ticketList[1])? $this->ticketList[1]->ticketID : 'null';
-        $sql = <<<SQLEOF
+        $sql = <<<SQL
 insert into OrderInfo (
     ticketID1,
     ticketID2,
@@ -103,7 +103,7 @@ insert into OrderInfo (
     'reserved',
     '{$userName}'
 ) returning id, orderTime;
-SQLEOF;
+SQL;
         $res = Database::query($sql);
         $resRow = Database::fetchRow($res);
         $this->orderID = intval($resRow[0]);
@@ -127,11 +127,11 @@ SQLEOF;
             $oneTicket->releaseSeatInfo();
         }
         $orderID = $this->orderID;
-        $sql = <<<SQLEOF
+        $sql = <<<SQL
 update OrderInfo 
 set orderStatus = 'cancelled'
 where id = {$orderID};
-SQLEOF;
+SQL;
         Database::query($sql);
     }
 }
