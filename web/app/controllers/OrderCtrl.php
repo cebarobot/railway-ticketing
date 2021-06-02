@@ -46,6 +46,7 @@ class OrderCtrl {
         $order->submit();
 
         header("Location: /orderList");
+        die();
     }
     
     public static function orderList() {
@@ -54,6 +55,15 @@ class OrderCtrl {
         Support::includeView("orderList", array(
             'orderList' => $orderList->list
         ));
+        die();
+    }
+
+    public static function orderCancel() {
+        $order = new Order();
+        $order->initByID(intval($_GET['orderID']));
+        $order->cancel();
+
+        header("Location: /orderList");
         die();
     }
 }

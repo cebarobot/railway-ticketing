@@ -122,6 +122,16 @@ SQLEOF;
     }
 
     public function cancel() {
-
+        $this->status = 'cancelled';
+        foreach ($this->ticketList as $oneTicket) {
+            $oneTicket->releaseSeatInfo();
+        }
+        $orderID = $this->orderID;
+        $sql = <<<SQLEOF
+update OrderInfo 
+set orderStatus = 'cancelled'
+where id = {$orderID};
+SQLEOF;
+        Database::query($sql);
     }
 }

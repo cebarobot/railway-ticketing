@@ -1,5 +1,6 @@
 <?php
     use \foundation\Support;
+    use \app\models\Symbol;
     Support::includeView('pageHeader', array(
         'pageTitle' => '订单',
         'activeNavItem' => '订单信息',
@@ -42,8 +43,8 @@
                             <div class="row order-item-header">
                                 <i class="bi bi-card-heading"></i>
                                 <div>
-                                    <span>订票日期：</span>
-                                    <span><?= $orderItem->orderDate ?></span>
+                                    <span>订票时间：</span>
+                                    <span><?= $orderItem->orderTime ?></span>
                                 </div>
                                 <div>
                                     <span>订单号：</span>
@@ -69,20 +70,22 @@
                                         <div><?= $ticketItem->passengerName ?></div>
                                         <div>中国居民身份证</div>
                                     </div>
-                                    <div class="order-seat"><?= $ticketItem->seatType ?></div>
+                                    <div class="order-seat"><?= Symbol::seatType($ticketItem->seatType) ?></div>
                                     <div class="order-price">￥<?= $ticketItem->price ?></div>
                                     <div class="order-status">
-                                        <div><?= $ticketItem->status ?></div>
-                                        <div>
-                                            <button class="btn btn-warning btn-sm">退票</button>
-                                        </div>
+                                        <div><?= Symbol::status($orderItem->status) ?></div>
                                     </div>
                                 </div>
                             <?php endforeach ?>
                             <div class="row order-item-footer">
                                 <div class="col text-end">
-                                    <button class="btn btn-primary btn-sm">打印行程信息</button>
-                                    <button class="btn btn-warning btn-sm">取消订单</button>
+                                    <form method="GET">
+                                        <input type="hidden" name="orderID" value="<?= $orderItem->orderID ?>">
+                                        <?php if ($orderItem->status == 'reserved'): ?>
+                                        <button formaction="/orderPrint" class="btn btn-primary btn-sm">打印行程信息</button>
+                                        <button formaction="/orderCancel" class="btn btn-warning btn-sm">取消订单</button>
+                                        <?php endif ?>
+                                    </form>
                                 </div>
                             </div>
                         </div>
