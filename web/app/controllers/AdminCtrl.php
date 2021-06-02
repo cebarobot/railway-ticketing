@@ -5,6 +5,8 @@ use foundation\Support;
 use app\models\HotTrain;
 use app\models\User;
 use app\models\OrderList;
+use DateTime;
+use foundation\Database;
 
 class AdminCtrl {
     public static function index() {
@@ -17,8 +19,15 @@ class AdminCtrl {
         ));
     }
 
-    public static function initSeatForDay($date) {
-
+    public static function initSeat() {
+        $dateStr = (new DateTime($_GET['date']))->format('Y-m-d');
+        $sql = <<<SQLEOF
+insert into Seat
+select TP_TrainNum, '$dateStr', TP_SeatType, TP_ArrivalNum, 5
+from TicketPrice;
+SQLEOF;
+        Database::query($sql);
+        header("Location: /admin");
     }
 
     public static function orderList() {
