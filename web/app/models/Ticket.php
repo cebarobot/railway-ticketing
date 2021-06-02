@@ -51,11 +51,40 @@ SQL;
     }
 
     public function requireSeatInfo() {
+        $trainNum = $this->trainNum;
+        $date = $this->date;
+        $seatType = $this->seatType;
+        $depSta = $this->depSta;
+        $arrSta = $this->arrSta;
         $sql = <<<SQL
+update seat
+set se_ticketleft = se_ticketleft - 1
+where 
+    se_trainnum = '{$trainNum}' and 
+    se_date = '{$date}' and 
+    se_type = '{$seatType}' and 
+    se_stopnum > (select t_stopnum from train where (t_number = '{$trainNum}' and t_station = '{$depSta}')) and
+    se_stopnum <= (select t_stopnum from train where (t_number = '{$trainNum}' and t_station = '{$arrSta}'));
 SQL;
+        Database::query($sql);
     }
 
     public function releaseSeatInfo() {
-        
+        $trainNum = $this->trainNum;
+        $date = $this->date;
+        $seatType = $this->seatType;
+        $depSta = $this->depSta;
+        $arrSta = $this->arrSta;
+        $sql = <<<SQL
+update seat
+set se_ticketleft = se_ticketleft + 1
+where 
+    se_trainnum = '{$trainNum}' and 
+    se_date = '{$date}' and 
+    se_type = '{$seatType}' and 
+    se_stopnum > (select t_stopnum from train where (t_number = '{$trainNum}' and t_station = '{$depSta}')) and
+    se_stopnum <= (select t_stopnum from train where (t_number = '{$trainNum}' and t_station = '{$arrSta}'));
+SQL;
+        Database::query($sql);
     }
 }
