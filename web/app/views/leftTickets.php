@@ -119,15 +119,19 @@
                     </div>
                     <?php foreach ($ticketList as $ticketItem): ?>
                         <div class="row ticket-res-item py-4">
-                            <div class="ticket-no"><?= $ticketItem['trainNum'] ?></div>
-                            <div class="ticket-dep">
-                                <div class="ticket-time"><?= $ticketItem['depTime'] ?></div>
-                                <div class="ticket-sta"><?= $ticketItem['depSta'] ?></div>
-                            </div>
-                            <div class="ticket-du"><?= $ticketItem['duration'] ?></div>
-                            <div class="ticket-arr">
-                                <div class="ticket-time"><?= $ticketItem['arrTime'] ?></div>
-                                <div class="ticket-sta"><?= $ticketItem['arrSta'] ?></div>
+                            <div class="ticket-info">
+                                <div class="row ticket-info-item my-3">
+                                    <div class="ticket-info-no"><?= $ticketItem['trainNum'] ?></div>
+                                    <div class="ticket-info-dep">
+                                        <div class="ticket-time"><?= $ticketItem['depTime'] ?></div>
+                                        <div class="ticket-sta"><?= $ticketItem['depSta'] ?></div>
+                                    </div>
+                                    <div class="ticket-info-du"><?= $ticketItem['duration'] ?></div>
+                                    <div class="ticket-info-arr">
+                                        <div class="ticket-time"><?= $ticketItem['arrTime'] ?></div>
+                                        <div class="ticket-sta"><?= $ticketItem['arrSta'] ?></div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="ticket-buy">
                                 <?php foreach ($ticketItem['seatList'] as $seatItem): ?>
