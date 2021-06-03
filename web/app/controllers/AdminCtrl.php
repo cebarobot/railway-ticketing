@@ -11,9 +11,33 @@ use foundation\Database;
 class AdminCtrl {
     public static function index() {
         $hotTrain = new HotTrain();
+        $sql = <<<SQL
+select count(*) as cnt from orderinfo;
+SQL;
+        $res = Database::selectFirst($sql);
+        $totalOrderCnt = $res['cnt'];
+        $sql = <<<SQL
+select count(*) as cnt from orderinfo where orderstatus != 'cancelled';
+SQL;
+        $res = Database::selectFirst($sql);
+        $orderCnt = $res['cnt'];
+        $sql = <<<SQL
+select
+    sum(TicketInfo.price) as sum
+from 
+    TicketInfo, OrderInfo
+where 
+    OrderInfo.orderStatus != 'cancelled' and
+    (OrderInfo.ticketID1 = TicketInfo.id or OrderInfo.ticketID2 = TicketInfo.id)
+;
+SQL;
+        $res = Database::selectFirst($sql);
+        $totalPrice = $res['sum'];
+        
+
         Support::includeView('adminIndex', array(
-            'totalOrderCnt' => 1,
-            'totalPrice' => 1,
+            'totalOrderCnt' => "$orderCnt($totalOrderCnt)",
+            'totalPrice' => "￥$totalPrice",
             'hotTrain' => new HotTrain(),
             'userList' => User::getUserList(),
         ));

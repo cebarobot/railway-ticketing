@@ -79,6 +79,7 @@
                             <?php endforeach ?>
                             <div class="row order-item-footer">
                                 <div class="col text-end">
+                                    <div>￥<?= $orderItem->totalPrice ?></div>
                                     <form method="GET">
                                         <input type="hidden" name="orderID" value="<?= $orderItem->orderID ?>">
                                         <?php if ($orderItem->status == 'reserved'): ?>

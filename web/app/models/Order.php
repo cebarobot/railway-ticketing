@@ -11,6 +11,7 @@ class Order extends \foundation\BaseModel {
     public $orderTime;
     public $status;
     public $ticketList;
+    public $totalPrice;
 
     private static function query($cond) {
         $sql = <<<SQL
